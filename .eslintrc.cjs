@@ -4,7 +4,11 @@ module.exports = {
     es2021: true,
     node: true,
   },
-  extends: ['eslint:recommended', 'plugin:prettier/recommended'],
+  extends: [
+    'eslint:recommended',
+    'plugin:prettier/recommended',
+    'plugin:@typescript-eslint/recommended',
+  ],
   overrides: [],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -12,7 +16,7 @@ module.exports = {
     sourceType: 'module',
   },
   plugins: ['simple-import-sort', 'import', 'prettier'],
-  ignorePatterns: ['**/*.css', '**/*.scss'],
+  ignorePatterns: ['**/*.css', '**/*.scss', 'dist/'],
   rules: {
     'prettier/prettier': ['warn'],
     'no-console': [
@@ -26,5 +30,11 @@ module.exports = {
     'import/first': 'error',
     'import/newline-after-import': 'error',
     'import/no-duplicates': 'error',
+    '@typescript-eslint/consistent-type-imports': [
+      'error',
+      {
+        prefer: 'type-imports',
+      },
+    ],
   },
 };
