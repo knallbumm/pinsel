@@ -31,6 +31,7 @@ export default defineConfig({
           sourceMap: false,
           declaration: true,
           outDir: 'dist',
+          exclude: ['**/*.test.ts', '**/_visualizer/**'],
         }),
       ],
     },

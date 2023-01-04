@@ -16,5 +16,5 @@
     "importsNotUsedAsValues": "error",
     "outDir": "dist/"
   },
-  "include": ["src", "src/index.tsx.ts", "src/index.ts", "vite-env.d.ts"]
+  "include": ["src/*/**.ts", "vite-env.d.ts"]
 }
