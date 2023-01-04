@@ -1,7 +1,10 @@
+import { Scene } from './Scene';
 import type { PinselOptions } from './types/PinselOptions';
 
 export class Pinsel {
+  readonly scene: Scene;
+
   constructor(options: PinselOptions) {
-    console.log(options);
+    this.scene = new Scene();
   }
 }
