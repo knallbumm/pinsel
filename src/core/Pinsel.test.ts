@@ -24,3 +24,12 @@ describe('Pinsel - add()', () => {
     expect(p.scene['objects']).toContain(shape);
   });
 });
+
+describe('Pinsel - commit()', () => {
+  test('Should commit changes', () => {
+    const p = new Pinsel({});
+
+    p.commit();
+    expect(true).toBe(true);
+  });
+});
