@@ -1,9 +1,10 @@
+import type { HorizontalPositionAnchor } from '../../types/anchors/HorizontalPositionAnchor';
 import type { VerticalPositionAnchor } from '../../types/anchors/VerticalPositionAnchor';
 import type { CreationRectangle } from '../../types/CreationRectangle';
 
 export class Shape {
-  readonly x: number | VerticalPositionAnchor;
-  readonly y: number;
+  readonly x: number | HorizontalPositionAnchor;
+  readonly y: number | VerticalPositionAnchor;
   readonly width: number;
   readonly height: number;
 
