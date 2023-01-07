@@ -10,10 +10,10 @@ const p = new Pinsel({
   renderer: new AdptiveCanvasRenderer({ container, size: 'MAX' }),
 });
 
-const rect = rectangle({ width: 50, height: 50, x: 0, y: 0 });
-p.add(rect);
+const rect = rectangle({ width: 0.5, height: 0.3, x: 0, y: 0 });
+p.scene.add(rect);
 
-const rec2 = rectangle({ width: 50, height: 50, x: 50, y: 50 });
-p.add(rec2);
+const rec2 = rectangle({ width: 0.2, height: 0.2, x: 0.3, y: 0.4 });
+p.scene.add(rec2);
 
 p.commit();

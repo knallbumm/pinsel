@@ -1,10 +1,9 @@
 import type { Scene } from './Scene';
-import type { Shape } from './shapes/Shape/Shape';
 
 export class Runner {
-  render(scene: Scene, shapes: Shape[]) {
+  render(scene: Scene) {
     window.requestAnimationFrame(() => {
-      scene.renderer.render(shapes);
+      scene.renderer.renderNewFrame(scene);
     });
   }
 }

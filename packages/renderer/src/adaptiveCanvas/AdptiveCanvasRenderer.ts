@@ -1,4 +1,4 @@
-import type { Shape } from '@pinsel/core';
+import type { Scene } from '@pinsel/core';
 import { Renderer } from '@pinsel/core';
 import type { RendererOptions } from '@pinsel/core/src/types/RendererOptions';
 
@@ -9,19 +9,20 @@ export class AdptiveCanvasRenderer extends Renderer {
     super.appendToContainer();
   }
 
-  render(shapes: Shape[]) {
+  renderNewFrame(scene: Scene) {
+    const frameUpdate = scene.getFrameUpdate(this.calculatedSize);
     const context = (this.domElement as HTMLCanvasElement).getContext('2d');
     if (!context) {
       return;
     }
     context.fillStyle = 'red';
 
-    for (const shape of shapes) {
+    for (const shape of frameUpdate.objects) {
       context.rect(shape.x, shape.y, shape.width, shape.height);
       context.fill();
     }
 
-    console.log(`Triing to render scene: ${context}`, shapes);
+    console.log(`Triing to render scene: ${context}`, frameUpdate.objects);
   }
 
   resize(): void {
