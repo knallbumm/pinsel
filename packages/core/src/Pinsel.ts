@@ -1,3 +1,4 @@
+import logger from './helper/Logger';
 import { Renderer } from './Renderer';
 import { Runner } from './Runner';
 import { Scene } from './Scene';
@@ -14,6 +15,7 @@ export class Pinsel {
 
   add(shape: Shape) {
     if (!this.objects.includes(shape)) {
+      logger.info('CORE', `Inserted new shape`, shape);
       this.objects.push(shape);
     }
   }
