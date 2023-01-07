@@ -17,9 +17,11 @@
     "coverage": "vitest run --coverage"
   },
   "dependencies": {
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@rollup/plugin-typescript": "^10.0.1",
+    "@types/uuid": "^9.0.0",
     "@typescript-eslint/eslint-plugin": "^5.47.1",
     "@typescript-eslint/parser": "^5.47.1",
     "@vitest/coverage-c8": "^0.26.2",

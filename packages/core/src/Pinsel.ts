@@ -1,6 +1,6 @@
 import { Renderer } from './Renderer';
 import { Runner } from './Runner';
-import { Scene } from './Scene';
+import { Scene } from './Scene/Scene';
 import type { PinselOptions } from './types';
 import type { CoordinateSpace } from './types/CoordinateSpace';
 

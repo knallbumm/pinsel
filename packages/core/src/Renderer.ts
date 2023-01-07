@@ -1,5 +1,5 @@
 import Logger from './helper/Logger';
-import type { Scene } from './Scene';
+import type { Scene } from './Scene/Scene';
 import type { RendererOptions } from './types/RendererOptions';
 import type { Size } from './types/Size';
 
@@ -56,6 +56,7 @@ export class Renderer {
         width: this.container.clientWidth,
         height: this.container.clientHeight,
       };
+
       this.resize(this.calculatedSize);
     });
   }
