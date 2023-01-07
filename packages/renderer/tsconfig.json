@@ -16,6 +16,6 @@
     "importsNotUsedAsValues": "error",
     "outDir": "dist/"
   },
-  "include": ["vite-env.d.ts", "packages/**/*.ts"],
-  "exclude": ["packages/*/rollup.config.ts"]
+  "include": ["**/*.ts"],
+  "exclude": ["**/*.test.ts"]
 }

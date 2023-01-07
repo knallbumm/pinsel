@@ -9,13 +9,11 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "esModuleInterop": true,
+    "noEmit": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noImplicitReturns": true,
-    "skipLibCheck": true,
-    "importsNotUsedAsValues": "error",
-    "outDir": "dist/"
+    "skipLibCheck": true
   },
-  "include": ["vite-env.d.ts", "packages/**/*.ts"],
-  "exclude": ["packages/*/rollup.config.ts"]
+  "include": ["src"]
 }

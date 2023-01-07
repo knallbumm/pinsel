@@ -1,0 +1,20 @@
+{
+  "name": "@pinsel/demo",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port 6969 --host",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@pinsel/core": "workspace:*",
+    "@pinsel/shared": "workspace:*",
+    "@pinsel/renderer": "workspace:*"
+  },
+  "devDependencies": {
+    "typescript": "^4.9.3",
+    "vite": "^4.0.0"
+  }
+}

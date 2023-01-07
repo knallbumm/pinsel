@@ -1,37 +1,20 @@
 {
-  "name": "pinsel",
-  "description": "Lightweight 2D drawing libary",
+  "name": "pinsel-mono",
   "private": true,
   "version": "0.0.1",
-  "type": "module",
-  "files": [
-    "dist"
-  ],
   "scripts": {
-    "dev": "vite serve _visualizer --port 2222",
-    "build": "vite build",
-    "preview": "vite preview",
-    "lint": "eslint . --ext .ts",
-    "lint:files": "eslint --ext .ts --max-warnings 0",
-    "lint:fix": "npm run lint -- --fix",
-    "typecheck": "tsc --noEmit -p .",
-    "test": "vitest",
-    "coverage": "vitest run --coverage"
+    "dev": "nx dev @pinsel/demo",
+    "build": "nx run-many --all --target=build --exclude @pinsel/demo"
   },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
   "devDependencies": {
-    "@rollup/plugin-typescript": "^10.0.1",
-    "@typescript-eslint/eslint-plugin": "^5.47.1",
-    "@typescript-eslint/parser": "^5.47.1",
-    "@vitest/coverage-c8": "^0.26.2",
-    "eslint": "^8.31.0",
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-import": "^2.26.0",
-    "eslint-plugin-prettier": "^4.2.1",
-    "eslint-plugin-simple-import-sort": "^8.0.0",
-    "prettier": "^2.8.1",
-    "rollup-plugin-typescript-paths": "^1.4.0",
+    "nx": "^15.4.4",
+    "rollup": "^3.9.1"
+  },
+  "dependencies": {
     "typescript": "^4.9.3",
-    "vite": "^4.0.0",
-    "vitest": "^0.26.2"
+    "@rollup/plugin-typescript": "^10.0.1"
   }
 }
