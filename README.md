@@ -1,4 +1,6 @@
-<p align="center">
+> :warning: **This library is still in an early stage of development and should therefore not be used productively at this point in time!**
+
+<p align="center" style="margin-top:3rem">
   <img src="./pinsel-billo-version-1.svg" width="180px"/>
 
 </p>
