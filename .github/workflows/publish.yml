@@ -6,9 +6,6 @@ on:
       - main
 
 jobs:
-  ci:
-    uses: ./.github/workflows/ci-workflow.yml
-
   publish:
     runs-on: ubuntu-latest
     steps:
@@ -16,7 +13,7 @@ jobs:
         with:
           fetch-depth: 0
       - uses: nrwl/nx-set-shas@v3
-      - run: npm ci
+      - run: pnpm ci
 
       - run: npx nx workspace-lint
       - run: npx nx format:check
