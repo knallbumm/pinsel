@@ -13,8 +13,7 @@ jobs:
       npm_registry: https://registry.npmjs.org/
 
   publish:
-    permissions:
-      contents: write
+    needs: checks
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
