@@ -21,8 +21,6 @@ jobs:
         with:
           npm_token: ${{ secrets.NPM_TOKEN }}
           checkout_modules: ${{ inputs.checkout_modules }}
-
-      - run: git branch --track main origin/main
         
       - uses: nrwl/nx-set-shas@v3
       - run: pnpm ci
