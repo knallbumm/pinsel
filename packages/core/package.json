@@ -1,12 +1,21 @@
 {
   "name": "@pinsel/core",
   "description": "The core of pinsel",
-  "private": true,
   "version": "0.0.0",
   "type": "module",
   "files": [
     "dist"
   ],
+  "author": {
+    "name": "Luis Q. Haitzer"
+  },
+  "repository": {
+    "url": "https://github.com/knallbumm/pinsel"
+  },
+  "homepage": "https://github.com/knallbumm/pinsel#readme",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
   "scripts": {
     "build": "rimraf dist/ && rollup --config rollup.config.ts --configPlugin typescript",
     "lint": "eslint . --ext .ts",
