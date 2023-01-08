@@ -16,8 +16,8 @@ p.scene.add(rect);
 const rec2 = rectangle({
   width: rect.widthAnchor({ multiplier: 0.5 }),
   height: 0.2,
-  x: rect.leadingAnchor({ constant: 0.1 }),
-  y: 0.4,
+  x: rect.trailingAnchor(),
+  y: rect.bottomAnchor(),
 });
 p.scene.add(rec2);
 

@@ -6,7 +6,7 @@ import type { CreationRectangle } from '../../types/CreationRectangle';
 import type { BaseShape } from './BaseShape';
 import { HorizontalPositionAnchor } from './HorizontalPositionAnchor';
 import { HorizontalSizeAnchor } from './HorizontalSizeAnchor';
-import type { VerticalPositionAnchor } from './VerticalPositionAnchor';
+import { VerticalPositionAnchor } from './VerticalPositionAnchor';
 import { VerticalSizeAnchor } from './VerticalSizeAnchor';
 
 export class Shape implements BaseShape {
@@ -56,7 +56,11 @@ export class Shape implements BaseShape {
     if (typeof this.x == 'number') {
       return this.x;
     } else {
-      return this.x.root.shape.actualX + this.x.constant;
+      return (
+        this.x.root.shape.actualX +
+        (this.x.type == 'TRAILING' ? this.x.root.shape.actualWidth : 0) +
+        this.x.constant
+      );
     }
   }
 
@@ -64,7 +68,11 @@ export class Shape implements BaseShape {
     if (typeof this.y == 'number') {
       return this.y;
     } else {
-      return this.y.root.shape.actualY + this.y.constant;
+      return (
+        this.y.root.shape.actualY +
+        (this.y.type == 'BOTTOM' ? this.y.root.shape.actualHeight : 0) +
+        this.y.constant
+      );
     }
   }
 
@@ -81,7 +89,41 @@ export class Shape implements BaseShape {
     return new VerticalSizeAnchor({ root: this, multiplier, constant });
   }
 
-  leadingAnchor({ constant }: Omit<CreationPositionAnchor, 'root'> = {}) {
-    return new HorizontalPositionAnchor({ root: this, constant });
+  leadingAnchor({
+    constant,
+  }: Omit<CreationPositionAnchor, 'root' | 'type'> = {}) {
+    return new HorizontalPositionAnchor({
+      root: this,
+      constant,
+      type: 'LEADING',
+    });
+  }
+
+  trailingAnchor({
+    constant,
+  }: Omit<CreationPositionAnchor, 'root' | 'type'> = {}) {
+    return new HorizontalPositionAnchor({
+      root: this,
+      constant,
+      type: 'TRAILING',
+    });
+  }
+
+  topAnchor({ constant }: Omit<CreationPositionAnchor, 'root' | 'type'> = {}) {
+    return new VerticalPositionAnchor({
+      root: this,
+      constant,
+      type: 'TOP',
+    });
+  }
+
+  bottomAnchor({
+    constant,
+  }: Omit<CreationPositionAnchor, 'root' | 'type'> = {}) {
+    return new VerticalPositionAnchor({
+      root: this,
+      constant,
+      type: 'BOTTOM',
+    });
   }
 }

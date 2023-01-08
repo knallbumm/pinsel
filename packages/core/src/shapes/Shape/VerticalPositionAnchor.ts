@@ -1,8 +1,11 @@
-import type { AnchorRoot } from '../../types/anchors/AnchorRoot';
+import type { CreationPositionAnchor } from '../../types/anchors/CreationPositionAnchor';
 import { PositionAnchor } from './PositionAnchor';
 
 export class VerticalPositionAnchor extends PositionAnchor {
-  constructor(root: AnchorRoot) {
-    super('VERTICAL', root);
+  type: 'TOP' | 'BOTTOM';
+  constructor({ root, constant, type }: CreationPositionAnchor) {
+    super('VERTICAL', { shape: root });
+    this.type = type as 'TOP' | 'BOTTOM';
+    this.constant = constant ?? 0;
   }
 }

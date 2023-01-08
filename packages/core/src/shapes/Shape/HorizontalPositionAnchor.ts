@@ -2,9 +2,10 @@ import type { CreationPositionAnchor } from '../../types/anchors/CreationPositio
 import { PositionAnchor } from './PositionAnchor';
 
 export class HorizontalPositionAnchor extends PositionAnchor {
-  constructor({ root, constant }: CreationPositionAnchor) {
+  type: 'LEADING' | 'TRAILING';
+  constructor({ root, constant, type }: CreationPositionAnchor) {
     super('HORIZONTAL', { shape: root });
-
+    this.type = type as 'LEADING' | 'TRAILING';
     this.constant = constant ?? 0;
   }
 }
