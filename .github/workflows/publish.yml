@@ -9,9 +9,19 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
+
+      - name: 'Automated Version Bump'
+        uses: 'phips28/gh-action-bump-version@master'
+        env:
+          GITHUB_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: prepare node
+        uses: knallbumm/kb-github-actions/.github/actions/prepare-node@pnpm
         with:
-          fetch-depth: 0
+          npm_token: ${{ secrets.NPM_TOKEN }}
+          checkout_modules: ${{ inputs.checkout_modules }}
+
       - uses: nrwl/nx-set-shas@v3
       - run: pnpm ci
 
