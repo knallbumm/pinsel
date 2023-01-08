@@ -2,7 +2,7 @@
   "name": "@pinsel/core",
   "description": "The core of pinsel",
   "private": true,
-  "version": "0.0.1",
+  "version": "0.0.0",
   "type": "module",
   "files": [
     "dist"

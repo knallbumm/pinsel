@@ -18,7 +18,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PACKAGEJSON_DIR: 'packages/core'
-      
+
       - name: 'Bump Core Version'
         uses: 'phips28/gh-action-bump-version@master'
         env:
@@ -30,11 +30,11 @@ jobs:
         with:
           npm_token: ${{ secrets.NPM_TOKEN }}
 
-      - uses: nrwl/nx-set-shas@v3
-      - run: pnpm ci
-
-      - run: npx nx workspace-lint
-      - run: npx nx format:check
-      - run: npx nx affected --target=lint --parallel=3
-      - run: npx nx affected --target=test --parallel=3 --ci --code-coverage
-      - run: npx nx affected --target=build --parallel=3
+      - name: Publish to npm
+        id: changesets
+        uses: changesets/action@v1
+        with:
+          publish: pnpm release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
