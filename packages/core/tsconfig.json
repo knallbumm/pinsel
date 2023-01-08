@@ -18,5 +18,4 @@
   },
   "include": ["**/*.ts", "../shared/src/Scene.ts"],
   "exclude": ["**/*.test.ts"]
-  
 }

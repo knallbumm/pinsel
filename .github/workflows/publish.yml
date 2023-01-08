@@ -7,21 +7,29 @@ on:
 
 jobs:
   publish:
+    permissions:
+      contents: write
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
 
-      - name: 'Automated Version Bump'
+      - name: 'Bump Core Version'
         uses: 'phips28/gh-action-bump-version@master'
         env:
-          GITHUB_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PACKAGEJSON_DIR: 'packages/core'
+      
+      - name: 'Bump Core Version'
+        uses: 'phips28/gh-action-bump-version@master'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PACKAGEJSON_DIR: 'packages/renderer'
 
       - name: prepare node
         uses: knallbumm/kb-github-actions/.github/actions/prepare-node@pnpm
         with:
           npm_token: ${{ secrets.NPM_TOKEN }}
-          checkout_modules: ${{ inputs.checkout_modules }}
-        
+
       - uses: nrwl/nx-set-shas@v3
       - run: pnpm ci
 
