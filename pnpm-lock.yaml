@@ -34,6 +34,7 @@ importers:
       eslint-plugin-prettier: ^4.2.1
       eslint-plugin-simple-import-sort: ^8.0.0
       prettier: ^2.8.1
+      rimraf: ^3.0.2
       rollup: ^3.9.1
       typescript: ^4.9.3
       uuid: ^9.0.0
@@ -52,6 +53,7 @@ importers:
       eslint-plugin-prettier: 4.2.1_32m5uc2milwdw3tnkcq5del26y
       eslint-plugin-simple-import-sort: 8.0.0_eslint@8.31.0
       prettier: 2.8.1
+      rimraf: 3.0.2
       rollup: 3.9.1
       typescript: 4.9.4
       vitest: 0.26.3
@@ -82,6 +84,7 @@ importers:
       eslint-plugin-prettier: ^4.2.1
       eslint-plugin-simple-import-sort: ^8.0.0
       prettier: ^2.8.1
+      rimraf: ^3.0.2
       typescript: ^4.9.3
       vitest: ^0.26.3
     dependencies:
@@ -98,6 +101,7 @@ importers:
       eslint-plugin-prettier: 4.2.1_32m5uc2milwdw3tnkcq5del26y
       eslint-plugin-simple-import-sort: 8.0.0_eslint@8.31.0
       prettier: 2.8.1
+      rimraf: 3.0.2
       vitest: 0.26.3
 
 packages:
@@ -1856,7 +1860,7 @@ packages:
       fs.realpath: 1.0.0
       inflight: 1.0.6
       inherits: 2.0.4
-      minimatch: 3.0.5
+      minimatch: 3.1.2
       once: 1.4.0
       path-is-absolute: 1.0.1
     dev: true
@@ -2348,12 +2352,6 @@ packages:
     resolution: {integrity: sha512-I9jwMn07Sy/IwOj3zVkVik2JTvgpaykDZEigL6Rx6N9LbMywwUSMtxET+7lVoDLLd3O3IXwJwvuuns8UB/HeAg==}
     engines: {node: '>=4'}
     dev: false
-
-  /minimatch/3.0.5:
-    resolution: {integrity: sha512-tUpxzX0VAzJHjLu0xUfFv1gwVp9ba3IOuRAVH2EGuRW8a5emA2FlACLqiT/lDVtS1W+TGNwqz3sWaNyLgDJWuw==}
-    dependencies:
-      brace-expansion: 1.1.11
-    dev: true
 
   /minimatch/3.1.2:
     resolution: {integrity: sha512-J7p63hRiAjw1NDEww1W7i37+ByIrOWO5XQQAzZ3VOcL0PNybwpfmV/N05zFAzwQ9USyEcX6t3UO+K5aqBQOIHw==}
