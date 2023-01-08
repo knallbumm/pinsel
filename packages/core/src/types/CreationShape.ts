@@ -1,7 +1,9 @@
-import type { HorizontalPositionAnchor } from '../shapes/Shape/HorizontalPositionAnchor';
-import type { HorizontalSizeAnchor } from '../shapes/Shape/HorizontalSizeAnchor';
-import type { VerticalPositionAnchor } from '../shapes/Shape/VerticalPositionAnchor';
-import type { VerticalSizeAnchor } from '../shapes/Shape/VerticalSizeAnchor';
+import type {
+  HorizontalPositionAnchor,
+  HorizontalSizeAnchor,
+  VerticalPositionAnchor,
+  VerticalSizeAnchor,
+} from '../scene/anchors';
 
 export interface CreationShape {
   x: number | HorizontalPositionAnchor;

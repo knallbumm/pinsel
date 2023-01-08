@@ -1,7 +1,7 @@
 import { Pinsel } from './src/Pinsel';
 import { Renderer } from './src/Renderer';
 import { Runner } from './src/Runner';
-import { Scene } from './src/Scene/Scene';
+import { Scene } from './src/scene/Scene';
 
 export { Pinsel };
 

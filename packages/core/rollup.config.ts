@@ -7,11 +7,10 @@ export default {
     file: 'dist/index.js',
     format: 'es',
   },
-  pureExternalImports: true,
   plugins: [
     strip({
       include: ['**/*.ts'],
-      exclude: ['**/*.test.ts', 'rollup.config.ts'],
+      exclude: ['**/*.test.ts', 'rollup.config.ts', 'rollup.config.d.ts'],
       functions: ['logger.*'],
     }),
     ts({

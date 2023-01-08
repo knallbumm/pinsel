@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "@pinsel/core": "workspace:*",
-    "@pinsel/shared": "workspace:*",
     "@pinsel/renderer": "workspace:*"
   },
   "devDependencies": {

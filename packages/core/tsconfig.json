@@ -16,7 +16,6 @@
     "importsNotUsedAsValues": "error",
     "outDir": "dist/"
   },
-  "include": ["**/*.ts", "../shared/src/Scene.ts"],
-  "exclude": ["**/*.test.ts"]
-  
+  "include": ["**/*.ts"],
+  "exclude": ["**/*.test.ts", "rollup.config.ts", "rollup.config.d.ts"]
 }

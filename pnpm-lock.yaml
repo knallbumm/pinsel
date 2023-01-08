@@ -58,13 +58,11 @@ importers:
     specifiers:
       '@pinsel/core': workspace:*
       '@pinsel/renderer': workspace:*
-      '@pinsel/shared': workspace:*
       typescript: ^4.9.3
       vite: ^4.0.0
     dependencies:
       '@pinsel/core': link:../core
       '@pinsel/renderer': link:../renderer
-      '@pinsel/shared': link:../shared
     devDependencies:
       typescript: 4.9.4
       vite: 4.0.4
@@ -99,14 +97,6 @@ importers:
       eslint-plugin-simple-import-sort: 8.0.0_eslint@8.31.0
       prettier: 2.8.1
       vitest: 0.26.3
-
-  packages/shared:
-    specifiers:
-      '@rollup/plugin-typescript': ^10.0.1
-      typescript: ^4.9.3
-    dependencies:
-      '@rollup/plugin-typescript': 10.0.1_typescript@4.9.4
-      typescript: 4.9.4
 
 packages:
 
@@ -469,6 +459,7 @@ packages:
       '@rollup/pluginutils': 5.0.2
       resolve: 1.22.1
       typescript: 4.9.4
+    dev: true
 
   /@rollup/pluginutils/5.0.2:
     resolution: {integrity: sha512-pTd9rIsP92h+B6wWwFbW8RkZv4hiR/xKsqre4SIuAOaOEQRxi0lqLke9k2/7WegC85GgUs9pjmOjCUi3In4vwA==}
@@ -482,6 +473,7 @@ packages:
       '@types/estree': 1.0.0
       estree-walker: 2.0.2
       picomatch: 2.3.1
+    dev: true
 
   /@rollup/pluginutils/5.0.2_rollup@3.9.1:
     resolution: {integrity: sha512-pTd9rIsP92h+B6wWwFbW8RkZv4hiR/xKsqre4SIuAOaOEQRxi0lqLke9k2/7WegC85GgUs9pjmOjCUi3In4vwA==}
