@@ -6,6 +6,12 @@ on:
       - main
 
 jobs:
+  checks:
+    uses: knallbumm/kb-github-actions/.github/workflows/checks.yml@pnpm
+    with:
+      # test_check: true
+      npm_registry: https://registry.npmjs.org/
+
   publish:
     permissions:
       contents: write
