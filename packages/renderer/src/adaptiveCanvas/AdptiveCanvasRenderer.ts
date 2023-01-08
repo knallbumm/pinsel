@@ -15,14 +15,12 @@ export class AdptiveCanvasRenderer extends Renderer {
     if (!context) {
       return;
     }
-    context.fillStyle = 'red';
 
     for (const shape of frameUpdate.objects) {
+      context.fillStyle = shape.fill;
       context.rect(shape.x, shape.y, shape.width, shape.height);
       context.fill();
     }
-
-    console.log(`Triing to render scene: ${context}`, frameUpdate.objects);
   }
 
   resize(): void {

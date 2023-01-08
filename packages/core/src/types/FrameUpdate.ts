@@ -1,5 +1,5 @@
-import type { Shape } from '../shapes';
+import type { ResolvedShape } from './ResolvedShape';
 
 export interface FrameUpdate {
-  objects: Shape[];
+  objects: ResolvedShape[];
 }

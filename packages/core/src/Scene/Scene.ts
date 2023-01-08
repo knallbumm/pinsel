@@ -43,8 +43,6 @@ export class Scene {
   public getFrameUpdate(size: Size): FrameUpdate {
     logger.info('CORE', 'Requested FrameUpdate for size', size);
 
-    const resolvedShapes = this.resolvedShapes;
-
     if (this.coordinateSpace == 'ADAPTIVE') {
       return {
         objects: this.resolvedShapes.map((a) => {
@@ -53,11 +51,11 @@ export class Scene {
             height: a.height * size.height,
             x: a.x * size.width,
             y: a.y * size.height,
-          });
+          }) as ResolvedShape;
         }),
       };
     } else {
-      return { objects: this.shapes };
+      return { objects: this.shapes } as { objects: ResolvedShape[] };
     }
   }
 }
