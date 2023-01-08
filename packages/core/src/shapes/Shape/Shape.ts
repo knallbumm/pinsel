@@ -1,13 +1,15 @@
 import { v4 as uuid } from 'uuid';
 
+import {
+  HorizontalPositionAnchor,
+  HorizontalSizeAnchor,
+  VerticalPositionAnchor,
+  VerticalSizeAnchor,
+} from '../../scene/anchors';
 import type { CreationPositionAnchor } from '../../types/anchors/CreationPositionAnchor';
 import type { CreationSizeAnchor } from '../../types/anchors/CreationSizeAnchor';
 import type { CreationRectangle } from '../../types/CreationRectangle';
 import type { BaseShape } from './BaseShape';
-import { HorizontalPositionAnchor } from './HorizontalPositionAnchor';
-import { HorizontalSizeAnchor } from './HorizontalSizeAnchor';
-import { VerticalPositionAnchor } from './VerticalPositionAnchor';
-import { VerticalSizeAnchor } from './VerticalSizeAnchor';
 
 export class Shape implements BaseShape {
   readonly id: string = uuid();

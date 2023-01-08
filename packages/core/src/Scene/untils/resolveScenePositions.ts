@@ -1,8 +1,8 @@
+import Logger from '../../helper/Logger';
 import type { ResolvedShape } from '../../types/ResolvedShape';
 import type { Scene } from '../Scene';
 
 export const resolveScenePositions = (scene: Scene): ResolvedShape[] => {
-  // is only there to prevent build from crashing to to typecheck
-  console.log(scene);
+  Logger.info('CORE', 'resolveScenePositions', scene);
   return [];
 };

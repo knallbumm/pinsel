@@ -1,4 +1,4 @@
-import type { Scene } from './Scene/Scene';
+import type { Scene } from './scene/Scene';
 
 export class Runner {
   render(scene: Scene) {

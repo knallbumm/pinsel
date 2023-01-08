@@ -1,7 +1,7 @@
 {
   "name": "pinsel-mono",
   "private": true,
-  "version": "0.0.6",
+  "version": "0.0.7",
   "scripts": {
     "dev": "turbo dev",
     "build": "turbo build --filter=!@pinsel/demo",
