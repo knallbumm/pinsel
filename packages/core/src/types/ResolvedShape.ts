@@ -1,4 +1,4 @@
-import type { BaseShape } from '../shapes/Shape/BaseShape';
+import type { BaseShape } from '../shapes/shape/BaseShape';
 
 export interface ResolvedShape extends BaseShape {
   x: number;

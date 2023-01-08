@@ -1,5 +1,5 @@
 import type { CreationRectangle } from '../../types/CreationRectangle';
-import { Shape } from '../Shape/Shape';
+import { Shape } from '../shape/Shape';
 
 export class Rectangle extends Shape {
   constructor({ x, y, width, height }: CreationRectangle) {
