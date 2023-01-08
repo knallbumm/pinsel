@@ -6,27 +6,29 @@ on:
       - main
 
 jobs:
+  checks:
+    uses: knallbumm/kb-github-actions/.github/workflows/checks.yml@pnpm
+    with:
+      # test_check: true
+      npm_registry: https://registry.npmjs.org/
+
   publish:
+    permissions:
+      contents: write
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-
-      - name: 'Automated Version Bump'
-        uses: 'phips28/gh-action-bump-version@master'
-        env:
-          GITHUB_TOKEN: ${{ secrets.NPM_TOKEN }}
-
       - name: prepare node
         uses: knallbumm/kb-github-actions/.github/actions/prepare-node@pnpm
         with:
           npm_token: ${{ secrets.NPM_TOKEN }}
-          checkout_modules: ${{ inputs.checkout_modules }}
-        
-      - uses: nrwl/nx-set-shas@v3
-      - run: pnpm ci
+          npm_registry: https://registry.npmjs.org/
 
-      - run: npx nx workspace-lint
-      - run: npx nx format:check
-      - run: npx nx affected --target=lint --parallel=3
-      - run: npx nx affected --target=test --parallel=3 --ci --code-coverage
-      - run: npx nx affected --target=build --parallel=3
+      - name: Publish to npm
+        id: changesets
+        uses: changesets/action@v1
+        with:
+          publish: pnpm release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

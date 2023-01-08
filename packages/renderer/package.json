@@ -1,12 +1,21 @@
 {
   "name": "@pinsel/renderer",
   "description": "The renderers by pinsel",
-  "private": true,
-  "version": "0.0.1",
+  "version": "0.0.0",
   "type": "module",
   "files": [
     "dist"
   ],
+  "author": {
+    "name": "Luis Q. Haitzer"
+  },
+  "repository": {
+    "url": "https://github.com/knallbumm/pinsel"
+  },
+  "homepage": "https://github.com/knallbumm/pinsel#readme",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
   "scripts": {
     "build": "tsc",
     "rollup-build": "rimraf dist/ && rollup --config rollup.config.ts --configPlugin typescript",
@@ -32,6 +41,7 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-simple-import-sort": "^8.0.0",
     "prettier": "^2.8.1",
+    "rimraf": "^3.0.2",
     "vitest": "^0.26.3"
   }
 }
