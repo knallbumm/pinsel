@@ -9,8 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@pinsel/core": "workspace:*",
-    "@pinsel/renderer": "workspace:*"
+    "pinsel": "workspace:*"
   },
   "devDependencies": {
     "typescript": "^4.9.3",

@@ -10,7 +10,7 @@ export class Pinsel {
   runner?: Runner;
 
   constructor(options: Partial<PinselOptions>) {
-    this.scene = new Scene({
+    this.scene = new Scene(this, {
       renderer: options.renderer ?? new Renderer(),
       coordinateSpace: options.coordinateSpace ?? 'FIXED',
     });
@@ -19,6 +19,7 @@ export class Pinsel {
   }
 
   commit() {
+    this.scene.updateAll();
     this.runner?.render(this.scene);
   }
 }

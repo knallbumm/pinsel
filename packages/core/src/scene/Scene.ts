@@ -1,4 +1,5 @@
 import logger from '../helper/Logger';
+import type { Pinsel } from '../Pinsel';
 import type { Renderer } from '../Renderer';
 import type { Shape } from '../shapes';
 import { rectangle } from '../shapes';
@@ -10,12 +11,14 @@ import type { Size } from '../types/Size';
 import { resolveShape } from './untils/resolveShape';
 
 export class Scene {
+  pinsel: Pinsel;
   renderer: Renderer;
   coordinateSpace: CoordinateSpace;
 
-  constructor(options: SceneOptions) {
+  constructor(pinsel: Pinsel, options: SceneOptions) {
     this.renderer = options.renderer;
     this.coordinateSpace = options.coordinateSpace;
+    this.pinsel = pinsel;
   }
 
   private shapes: Shape[] = [];
@@ -26,6 +29,7 @@ export class Scene {
       logger.info('CORE', `Inserted new shape`, shape);
       this.shapes.push(shape);
       this.resolvedShapes.push(resolveShape(shape));
+      shape.scene = this;
     }
   }
 
@@ -34,10 +38,6 @@ export class Scene {
     if (index > -1) {
       this.shapes.splice(index, 1);
     }
-  }
-
-  get shapess() {
-    return this.shapes;
   }
 
   public getFrameUpdate(size: Size): FrameUpdate {
@@ -57,5 +57,9 @@ export class Scene {
     } else {
       return { objects: this.shapes } as { objects: ResolvedShape[] };
     }
+  }
+
+  updateAll() {
+    this.resolvedShapes = this.shapes.map((s) => resolveShape(s));
   }
 }

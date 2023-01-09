@@ -1,7 +1,6 @@
 import './style.css';
 
-import { Pinsel, rectangle } from '@pinsel/core';
-import { AdptiveCanvasRenderer } from '@pinsel/renderer';
+import { AdptiveCanvasRenderer, Pinsel, rectangle } from 'pinsel';
 
 const container = document.getElementById('app');
 
@@ -22,3 +21,8 @@ const rec2 = rectangle({
 p.scene.add(rec2);
 
 p.commit();
+
+document.addEventListener('click', () => {
+  console.log('clicked');
+  rect.x = Math.random();
+});

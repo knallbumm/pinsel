@@ -60,16 +60,45 @@ importers:
 
   packages/demo:
     specifiers:
-      '@pinsel/core': workspace:*
-      '@pinsel/renderer': workspace:*
+      pinsel: workspace:*
       typescript: ^4.9.3
       vite: ^4.0.0
     dependencies:
-      '@pinsel/core': link:../core
-      '@pinsel/renderer': link:../renderer
+      pinsel: link:../pinsel
     devDependencies:
       typescript: 4.9.4
       vite: 4.0.4
+
+  packages/pinsel:
+    specifiers:
+      '@pinsel/core': workspace:*
+      '@pinsel/renderer': workspace:*
+      '@rollup/plugin-typescript': ^10.0.1
+      '@typescript-eslint/eslint-plugin': ^5.47.1
+      '@typescript-eslint/parser': ^5.47.1
+      eslint: ^8.31.0
+      eslint-config-prettier: ^8.5.0
+      eslint-plugin-import: ^2.26.0
+      eslint-plugin-prettier: ^4.2.1
+      eslint-plugin-simple-import-sort: ^8.0.0
+      prettier: ^2.8.1
+      rimraf: ^3.0.2
+      typescript: ^4.9.3
+    dependencies:
+      '@pinsel/core': link:../core
+      '@pinsel/renderer': link:../renderer
+      typescript: 4.9.4
+    devDependencies:
+      '@rollup/plugin-typescript': 10.0.1_typescript@4.9.4
+      '@typescript-eslint/eslint-plugin': 5.48.0_k73wpmdolxikpyqun3p36akaaq
+      '@typescript-eslint/parser': 5.48.0_iukboom6ndih5an6iafl45j2fe
+      eslint: 8.31.0
+      eslint-config-prettier: 8.6.0_eslint@8.31.0
+      eslint-plugin-import: 2.26.0_m2kn7xiag5lymyarkgri27ztxm
+      eslint-plugin-prettier: 4.2.1_32m5uc2milwdw3tnkcq5del26y
+      eslint-plugin-simple-import-sort: 8.0.0_eslint@8.31.0
+      prettier: 2.8.1
+      rimraf: 3.0.2
 
   packages/renderer:
     specifiers:

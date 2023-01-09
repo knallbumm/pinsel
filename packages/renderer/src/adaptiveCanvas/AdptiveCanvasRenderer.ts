@@ -15,7 +15,14 @@ export class AdptiveCanvasRenderer extends Renderer {
     if (!context) {
       return;
     }
-
+    context.beginPath();
+    context.clearRect(
+      0,
+      0,
+      this.calculatedSize.width,
+      this.calculatedSize.height
+    );
+    console.log(frameUpdate.objects);
     for (const shape of frameUpdate.objects) {
       context.fillStyle = shape.fill;
       context.rect(shape.x, shape.y, shape.width, shape.height);

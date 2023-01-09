@@ -1,11 +1,13 @@
 import { v4 as uuid } from 'uuid';
 
+import Logger from '../../helper/Logger';
 import {
   HorizontalPositionAnchor,
   HorizontalSizeAnchor,
   VerticalPositionAnchor,
   VerticalSizeAnchor,
 } from '../../scene/anchors';
+import type { Scene } from '../../scene/Scene';
 import type { CreationPositionAnchor } from '../../types/anchors/CreationPositionAnchor';
 import type { CreationSizeAnchor } from '../../types/anchors/CreationSizeAnchor';
 import type { CreationRectangle } from '../../types/CreationRectangle';
@@ -13,7 +15,8 @@ import type { BaseShape } from './BaseShape';
 
 export class Shape implements BaseShape {
   readonly id: string = uuid();
-  readonly x: number | HorizontalPositionAnchor;
+  protected SCENE?: Scene;
+  protected X: number | HorizontalPositionAnchor;
   readonly y: number | VerticalPositionAnchor;
   readonly width: number | HorizontalSizeAnchor;
   readonly height: number | VerticalSizeAnchor;
@@ -22,14 +25,26 @@ export class Shape implements BaseShape {
   readonly fill: string = 'white';
 
   constructor({ x = 0, y = 0, width, height }: CreationRectangle) {
-    this.x = x;
+    this.X = x;
     this.y = y;
     this.width = width;
     this.height = height;
   }
 
-  get getSize() {
-    return this.x;
+  set scene(val: Scene) {
+    if (this.SCENE) {
+      Logger.error('SHAPE', 'Shape is already added to a scene');
+    }
+    this.SCENE = val;
+  }
+
+  get x() {
+    return this.X;
+  }
+
+  set x(val: number | HorizontalPositionAnchor) {
+    this.X = val;
+    this.SCENE?.pinsel.commit();
   }
 
   get actualWidth(): number {
@@ -55,13 +70,13 @@ export class Shape implements BaseShape {
   }
 
   get actualX(): number {
-    if (typeof this.x == 'number') {
-      return this.x;
+    if (typeof this.X == 'number') {
+      return this.X;
     } else {
       return (
-        this.x.root.shape.actualX +
-        (this.x.type == 'TRAILING' ? this.x.root.shape.actualWidth : 0) +
-        this.x.constant
+        this.X.root.shape.actualX +
+        (this.X.type == 'TRAILING' ? this.X.root.shape.actualWidth : 0) +
+        this.X.constant
       );
     }
   }
