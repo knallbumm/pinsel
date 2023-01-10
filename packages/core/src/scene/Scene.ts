@@ -46,12 +46,13 @@ export class Scene {
     if (this.coordinateSpace == 'ADAPTIVE') {
       return {
         objects: this.resolvedShapes.map((a) => {
-          return rectangle({
+          return {
             width: a.width * size.width,
             height: a.height * size.height,
             x: a.x * size.width,
             y: a.y * size.height,
-          }) as ResolvedShape;
+            fill: a.fill,
+          };
         }),
       };
     } else {

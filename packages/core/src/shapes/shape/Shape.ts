@@ -14,21 +14,32 @@ import type { CreationRectangle } from '../../types/CreationRectangle';
 import type { BaseShape } from './BaseShape';
 
 export class Shape implements BaseShape {
+  /** Uniqe uuid which identifies the shape */
   readonly id: string = uuid();
-  protected SCENE?: Scene;
-  protected X: number | HorizontalPositionAnchor;
-  readonly y: number | VerticalPositionAnchor;
-  readonly width: number | HorizontalSizeAnchor;
-  readonly height: number | VerticalSizeAnchor;
 
-  // Fill
-  readonly fill: string = 'white';
+  /** The Scene the Shape is attached to. When not added to any scene undefined */
+  protected SCENE?: Scene = undefined;
+
+  /** X-Position of the shape */
+  protected X: number | HorizontalPositionAnchor;
+
+  /** Y-Position of the shape */
+  protected Y: number | VerticalPositionAnchor;
+
+  /** Width of the shape */
+  protected WIDTH: number | HorizontalSizeAnchor;
+
+  /** Height of the shape */
+  protected HEIGHT: number | VerticalSizeAnchor;
+
+  /** Fill of the shape */
+  protected FILL = 'white';
 
   constructor({ x = 0, y = 0, width, height }: CreationRectangle) {
     this.X = x;
-    this.y = y;
-    this.width = width;
-    this.height = height;
+    this.Y = y;
+    this.WIDTH = width;
+    this.HEIGHT = height;
   }
 
   set scene(val: Scene) {
@@ -42,29 +53,65 @@ export class Shape implements BaseShape {
     return this.X;
   }
 
-  set x(val: number | HorizontalPositionAnchor) {
+  set x(val: typeof this.X) {
     this.X = val;
     this.SCENE?.pinsel.commit();
   }
 
+  get y() {
+    return this.Y;
+  }
+
+  set y(val: typeof this.Y) {
+    this.Y = val;
+    this.SCENE?.pinsel.commit();
+  }
+
+  get width() {
+    return this.WIDTH;
+  }
+
+  set width(val: typeof this.WIDTH) {
+    this.WIDTH = val;
+    this.SCENE?.pinsel.commit();
+  }
+
+  get height() {
+    return this.HEIGHT;
+  }
+
+  set height(val: typeof this.HEIGHT) {
+    this.HEIGHT = val;
+    this.SCENE?.pinsel.commit();
+  }
+
+  get fill() {
+    return this.FILL;
+  }
+
+  set fill(val: typeof this.FILL) {
+    this.FILL = val;
+    this.SCENE?.pinsel.commit();
+  }
+
   get actualWidth(): number {
-    if (typeof this.width == 'number') {
-      return this.width;
+    if (typeof this.WIDTH == 'number') {
+      return this.WIDTH;
     } else {
       return (
-        this.width.root.shape.actualWidth * this.width.multiplier +
-        this.width.constant
+        this.WIDTH.root.shape.actualWidth * this.WIDTH.multiplier +
+        this.WIDTH.constant
       );
     }
   }
 
   get actualHeight(): number {
-    if (typeof this.height == 'number') {
-      return this.height;
+    if (typeof this.HEIGHT == 'number') {
+      return this.HEIGHT;
     } else {
       return (
-        this.height.root.shape.actualHeight * this.height.multiplier +
-        this.height.constant
+        this.HEIGHT.root.shape.actualHeight * this.HEIGHT.multiplier +
+        this.HEIGHT.constant
       );
     }
   }
@@ -82,13 +129,13 @@ export class Shape implements BaseShape {
   }
 
   get actualY(): number {
-    if (typeof this.y == 'number') {
-      return this.y;
+    if (typeof this.Y == 'number') {
+      return this.Y;
     } else {
       return (
-        this.y.root.shape.actualY +
-        (this.y.type == 'BOTTOM' ? this.y.root.shape.actualHeight : 0) +
-        this.y.constant
+        this.Y.root.shape.actualY +
+        (this.Y.type == 'BOTTOM' ? this.Y.root.shape.actualHeight : 0) +
+        this.Y.constant
       );
     }
   }

@@ -10,4 +10,5 @@ export interface CreationShape {
   y: number | VerticalPositionAnchor;
   width: number | HorizontalSizeAnchor;
   height: number | VerticalSizeAnchor;
+  fill?: string;
 }

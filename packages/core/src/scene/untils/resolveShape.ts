@@ -10,5 +10,6 @@ export const resolveShape = (shape: Shape): ResolvedShape => {
     height: shape.actualHeight,
     x: shape.actualX,
     y: shape.actualY,
+    fill: shape.fill,
   };
 };

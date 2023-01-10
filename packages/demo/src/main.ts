@@ -25,4 +25,6 @@ p.commit();
 document.addEventListener('click', () => {
   console.log('clicked');
   rect.x = Math.random();
+  rect.y = Math.random();
+  rect.fill = 'red';
 });
