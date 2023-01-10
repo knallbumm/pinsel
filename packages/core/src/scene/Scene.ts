@@ -2,7 +2,6 @@ import logger from '../helper/Logger';
 import type { Pinsel } from '../Pinsel';
 import type { Renderer } from '../Renderer';
 import type { Shape } from '../shapes';
-import { rectangle } from '../shapes';
 import type { CoordinateSpace } from '../types/CoordinateSpace';
 import type { FrameUpdate } from '../types/FrameUpdate';
 import type { ResolvedShape } from '../types/ResolvedShape';

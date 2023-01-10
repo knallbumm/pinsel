@@ -8,8 +8,8 @@
 <h4 align="center">A lightweight, framework agnostic 2D drawing libary with focus on performance and developer experience.</h4>
 
 <p align="center" style="margin-top:0.5rem">
-  <a href="https://badge.fury.io/js/vue-sorrybook">
-    <img src="https://badge.fury.io/js/vue-sorrybook.svg">
+  <a href="https://badge.fury.io/js/pinsel">
+    <img src="https://badge.fury.io/js/pinsel.svg">
   </a>
 </p>
 
