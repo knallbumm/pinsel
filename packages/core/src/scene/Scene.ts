@@ -14,6 +14,8 @@ export class Scene {
   renderer: Renderer;
   coordinateSpace: CoordinateSpace;
 
+  private isBatchUpdating = false;
+
   constructor(pinsel: Pinsel, options: SceneOptions) {
     this.renderer = options.renderer;
     this.coordinateSpace = options.coordinateSpace;
@@ -61,5 +63,18 @@ export class Scene {
 
   updateAll() {
     this.resolvedShapes = this.shapes.map((s) => resolveShape(s));
+  }
+
+  updateBatch(fn: () => void) {
+    this.isBatchUpdating = true;
+    fn();
+    this.isBatchUpdating = false;
+    this.expectCommit();
+  }
+
+  expectCommit() {
+    if (!this.isBatchUpdating) {
+      this.pinsel.commit();
+    }
   }
 }

@@ -23,8 +23,9 @@ p.scene.add(rec2);
 p.commit();
 
 document.addEventListener('click', () => {
-  console.log('clicked');
-  rect.x = Math.random();
-  rect.y = Math.random();
-  rect.fill = 'red';
+  p.scene.updateBatch(() => {
+    rect.x = Math.random();
+    rect.y = Math.random();
+    rect.fill = 'red';
+  });
 });

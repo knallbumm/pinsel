@@ -1,3 +1,4 @@
+import Logger from './helper/Logger';
 import { Renderer } from './Renderer';
 import { Runner } from './Runner';
 import { Scene } from './scene/Scene';
@@ -19,6 +20,7 @@ export class Pinsel {
   }
 
   commit() {
+    Logger.info('CORE', 'Change commited');
     this.scene.updateAll();
     this.runner?.render(this.scene);
   }

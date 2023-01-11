@@ -11,11 +11,15 @@ import type { Scene } from '../../scene/Scene';
 import type { CreationPositionAnchor } from '../../types/anchors/CreationPositionAnchor';
 import type { CreationSizeAnchor } from '../../types/anchors/CreationSizeAnchor';
 import type { CreationRectangle } from '../../types/CreationRectangle';
+import type { ShapeAttributes } from '../../types/ShapeAttributes';
+import type { ShapeType } from '../../types/ShapeType';
 import type { BaseShape } from './BaseShape';
 
 export class Shape implements BaseShape {
   /** Uniqe uuid which identifies the shape */
   readonly id: string = uuid();
+
+  readonly type: ShapeType;
 
   /** The Scene the Shape is attached to. When not added to any scene undefined */
   protected SCENE?: Scene = undefined;
@@ -35,11 +39,18 @@ export class Shape implements BaseShape {
   /** Fill of the shape */
   protected FILL = 'white';
 
-  constructor({ x = 0, y = 0, width, height }: CreationRectangle) {
+  constructor({
+    x = 0,
+    y = 0,
+    width,
+    height,
+    type,
+  }: CreationRectangle & ShapeAttributes) {
     this.X = x;
     this.Y = y;
     this.WIDTH = width;
     this.HEIGHT = height;
+    this.type = type;
   }
 
   set scene(val: Scene) {
@@ -55,7 +66,7 @@ export class Shape implements BaseShape {
 
   set x(val: typeof this.X) {
     this.X = val;
-    this.SCENE?.pinsel.commit();
+    this.SCENE?.expectCommit();
   }
 
   get y() {
@@ -64,7 +75,7 @@ export class Shape implements BaseShape {
 
   set y(val: typeof this.Y) {
     this.Y = val;
-    this.SCENE?.pinsel.commit();
+    this.SCENE?.expectCommit();
   }
 
   get width() {
@@ -73,7 +84,7 @@ export class Shape implements BaseShape {
 
   set width(val: typeof this.WIDTH) {
     this.WIDTH = val;
-    this.SCENE?.pinsel.commit();
+    this.SCENE?.expectCommit();
   }
 
   get height() {
@@ -82,7 +93,7 @@ export class Shape implements BaseShape {
 
   set height(val: typeof this.HEIGHT) {
     this.HEIGHT = val;
-    this.SCENE?.pinsel.commit();
+    this.SCENE?.expectCommit();
   }
 
   get fill() {
@@ -91,7 +102,7 @@ export class Shape implements BaseShape {
 
   set fill(val: typeof this.FILL) {
     this.FILL = val;
-    this.SCENE?.pinsel.commit();
+    this.SCENE?.expectCommit();
   }
 
   get actualWidth(): number {
