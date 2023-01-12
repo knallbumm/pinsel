@@ -8,12 +8,10 @@ import {
   VerticalSizeAnchor,
 } from '../../scene/anchors';
 import type { Scene } from '../../scene/Scene';
+import type { BaseShape, ShapeAttributes, ShapeType } from '../../types';
 import type { CreationPositionAnchor } from '../../types/anchors/CreationPositionAnchor';
 import type { CreationSizeAnchor } from '../../types/anchors/CreationSizeAnchor';
-import type { CreationRectangle } from '../../types/CreationRectangle';
-import type { ShapeAttributes } from '../../types/ShapeAttributes';
-import type { ShapeType } from '../../types/ShapeType';
-import type { BaseShape } from './BaseShape';
+import type { CreationRectangle } from '../../types/shapes/rectangle/CreationRectangle';
 
 export class Shape implements BaseShape {
   /** Uniqe uuid which identifies the shape */
@@ -66,7 +64,7 @@ export class Shape implements BaseShape {
 
   set x(val: typeof this.X) {
     this.X = val;
-    this.SCENE?.expectCommit();
+    this.SCENE?._expectCommit();
   }
 
   get y() {
@@ -75,7 +73,7 @@ export class Shape implements BaseShape {
 
   set y(val: typeof this.Y) {
     this.Y = val;
-    this.SCENE?.expectCommit();
+    this.SCENE?._expectCommit();
   }
 
   get width() {
@@ -84,7 +82,7 @@ export class Shape implements BaseShape {
 
   set width(val: typeof this.WIDTH) {
     this.WIDTH = val;
-    this.SCENE?.expectCommit();
+    this.SCENE?._expectCommit();
   }
 
   get height() {
@@ -93,7 +91,7 @@ export class Shape implements BaseShape {
 
   set height(val: typeof this.HEIGHT) {
     this.HEIGHT = val;
-    this.SCENE?.expectCommit();
+    this.SCENE?._expectCommit();
   }
 
   get fill() {
@@ -102,7 +100,7 @@ export class Shape implements BaseShape {
 
   set fill(val: typeof this.FILL) {
     this.FILL = val;
-    this.SCENE?.expectCommit();
+    this.SCENE?._expectCommit();
   }
 
   get actualWidth(): number {
