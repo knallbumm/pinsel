@@ -1,5 +1,11 @@
 # @pinsel/core
 
+## 0.0.3
+
+### Patch Changes
+
+- 8b1f110: Small improvements & better README
+
 ## 0.0.2
 
 ### Patch Changes
