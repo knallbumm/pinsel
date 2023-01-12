@@ -1,5 +1,5 @@
-import type { ResolvedShape } from './ResolvedShape';
+import type { ResolvedRectangle } from './ResolvedRectangle';
 
 export interface FrameUpdate {
-  objects: ResolvedShape[];
+  objects: ResolvedRectangle[];
 }

@@ -1,4 +1,6 @@
-import type { FillShape } from '../shapes/shape/FillShape';
+import type { ResolvedFillShape } from './ResolvedFillShape';
 import type { ResolvedShape } from './ResolvedShape';
 
-export type ResolvedRectangle = ResolvedShape & FillShape;
+export interface ResolvedRectangle extends ResolvedShape, ResolvedFillShape {
+  type: 'RECTANGLE';
+}

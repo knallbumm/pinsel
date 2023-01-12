@@ -1,7 +1,6 @@
 import type { Shape } from '../../shapes';
-import type { ResolvedShape } from '../../types/ResolvedShape';
 
-export const resolveShape = (shape: Shape): ResolvedShape => {
+export const resolveShape = (shape: Shape) => {
   // TODO: Check if there is already an exisiting resolved version
 
   return {

@@ -1,12 +1,12 @@
 import type { CoordinateSpace } from '../../types/CoordinateSpace';
-import type { ResolvedShape } from '../../types/ResolvedShape';
 import type { Size } from '../../types/Size';
+import type { SpecificResolvedShape } from '../../types/SpecificResolvedShape';
 
 export const transformToRealCoordiantes = (
-  shapes: ResolvedShape[],
+  shapes: SpecificResolvedShape[],
   size: Size,
   coordinateSpace: CoordinateSpace
-): ResolvedShape[] => {
+): SpecificResolvedShape[] => {
   if (coordinateSpace == 'ADAPTIVE') {
     return shapes.map((shape) => ({
       ...shape,

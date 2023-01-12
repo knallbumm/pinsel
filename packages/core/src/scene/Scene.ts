@@ -4,9 +4,9 @@ import type { Renderer } from '../Renderer';
 import type { Shape } from '../shapes';
 import type { CoordinateSpace } from '../types/CoordinateSpace';
 import type { FrameUpdate } from '../types/FrameUpdate';
-import type { ResolvedShape } from '../types/ResolvedShape';
 import type { SceneOptions } from '../types/SceneOptions';
 import type { Size } from '../types/Size';
+import type { SpecificResolvedShape } from '../types/SpecificResolvedShape';
 import { resolveShape } from './untils/resolveShape';
 import { transformToRealCoordiantes } from './untils/transformToRealCoordiantes';
 
@@ -24,7 +24,7 @@ export class Scene {
   }
 
   private shapes: Shape[] = [];
-  private resolvedShapes: ResolvedShape[] = [];
+  private resolvedShapes: SpecificResolvedShape[] = [];
 
   add(shape: Shape) {
     if (!this.shapes.includes(shape)) {
