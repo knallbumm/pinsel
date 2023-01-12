@@ -2,6 +2,8 @@ import type { Scene } from '@pinsel/core';
 import { Renderer } from '@pinsel/core';
 import type { RendererOptions } from '@pinsel/core/src/types/RendererOptions';
 
+import { renderRectangle } from '../helpers/canvas/shapes/rectangle/renderRectangle';
+
 export class AdptiveCanvasRenderer extends Renderer {
   constructor(options: RendererOptions) {
     super(options);
@@ -24,10 +26,10 @@ export class AdptiveCanvasRenderer extends Renderer {
     );
 
     for (const shape of frameUpdate.objects) {
-      context.fillStyle = shape.fill;
-      context.fillRect(shape.x, shape.y, shape.width, shape.height);
-      context.closePath();
-      context.fill();
+      switch (shape.type) {
+        case 'RECTANGLE':
+          renderRectangle(context, shape);
+      }
     }
   }
 

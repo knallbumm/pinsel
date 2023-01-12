@@ -8,6 +8,7 @@ import type { ResolvedShape } from '../types/ResolvedShape';
 import type { SceneOptions } from '../types/SceneOptions';
 import type { Size } from '../types/Size';
 import { resolveShape } from './untils/resolveShape';
+import { transformToRealCoordiantes } from './untils/transformToRealCoordiantes';
 
 export class Scene {
   pinsel: Pinsel;
@@ -27,7 +28,7 @@ export class Scene {
 
   add(shape: Shape) {
     if (!this.shapes.includes(shape)) {
-      logger.info('CORE', `Inserted new shape`, shape);
+      // logger.info('CORE', `Inserted new shape`, shape);
       this.shapes.push(shape);
       this.resolvedShapes.push(resolveShape(shape));
       shape.scene = this;
@@ -44,35 +45,29 @@ export class Scene {
   public getFrameUpdate(size: Size): FrameUpdate {
     logger.info('CORE', 'Requested FrameUpdate for size', size);
 
-    if (this.coordinateSpace == 'ADAPTIVE') {
-      return {
-        objects: this.resolvedShapes.map((a) => {
-          return {
-            width: a.width * size.width,
-            height: a.height * size.height,
-            x: a.x * size.width,
-            y: a.y * size.height,
-            fill: a.fill,
-          };
-        }),
-      };
-    } else {
-      return { objects: this.shapes } as { objects: ResolvedShape[] };
-    }
+    return {
+      objects: transformToRealCoordiantes(
+        this.resolvedShapes,
+        size,
+        this.coordinateSpace
+      ),
+    };
   }
 
   updateAll() {
     this.resolvedShapes = this.shapes.map((s) => resolveShape(s));
+    console.log(this.resolvedShapes);
   }
 
   updateBatch(fn: () => void) {
     this.isBatchUpdating = true;
     fn();
     this.isBatchUpdating = false;
-    this.expectCommit();
+    this._expectCommit();
   }
 
-  expectCommit() {
+  //** !INTERNAL! — This function is for internal use only. If you use it, expect unexpected. */
+  _expectCommit() {
     if (!this.isBatchUpdating) {
       this.pinsel.commit();
     }

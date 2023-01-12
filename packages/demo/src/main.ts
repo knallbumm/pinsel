@@ -2,6 +2,8 @@ import './style.css';
 
 import { AdptiveCanvasRenderer, Pinsel, rectangle } from 'pinsel';
 
+const start = performance.now();
+
 const container = document.getElementById('app');
 
 const p = new Pinsel({
@@ -20,7 +22,21 @@ const rec2 = rectangle({
 });
 p.scene.add(rec2);
 
+for (let a = 0; a < 5000; a++) {
+  p.scene.add(
+    rectangle({
+      width: 0.5,
+      height: 0.2,
+      x: rect.trailingAnchor(),
+      y: rect.bottomAnchor(),
+    })
+  );
+}
+
 p.commit();
+const end = performance.now();
+
+console.log(end - start);
 
 document.addEventListener('click', () => {
   p.scene.updateBatch(() => {
