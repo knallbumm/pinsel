@@ -2,11 +2,11 @@ import logger from '../helper/Logger';
 import type { Pinsel } from '../Pinsel';
 import type { Renderer } from '../Renderer';
 import type { Shape } from '../shapes';
+import type { SpecificResolvedShape } from '../types';
 import type { CoordinateSpace } from '../types/CoordinateSpace';
 import type { FrameUpdate } from '../types/FrameUpdate';
 import type { SceneOptions } from '../types/SceneOptions';
 import type { Size } from '../types/Size';
-import type { SpecificResolvedShape } from '../types/SpecificResolvedShape';
 import { resolveShape } from './untils/resolveShape';
 import { transformToRealCoordiantes } from './untils/transformToRealCoordiantes';
 

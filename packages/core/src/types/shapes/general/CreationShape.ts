@@ -3,7 +3,7 @@ import type {
   HorizontalSizeAnchor,
   VerticalPositionAnchor,
   VerticalSizeAnchor,
-} from '../scene/anchors';
+} from '../../../scene/anchors';
 
 export interface CreationShape {
   x: number | HorizontalPositionAnchor;

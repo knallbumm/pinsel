@@ -1,5 +1,5 @@
 import Logger from '../../helper/Logger';
-import type { CreationRectangle } from '../../types/CreationRectangle';
+import type { CreationRectangle } from '../../types';
 import { Rectangle } from './Rectangle';
 
 export const makeRectangle = (options: CreationRectangle): Rectangle => {

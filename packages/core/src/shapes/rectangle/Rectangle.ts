@@ -1,4 +1,4 @@
-import type { CreationRectangle } from '../../types/CreationRectangle';
+import type { CreationRectangle } from '../../types';
 import { Shape } from '../shape/Shape';
 
 export class Rectangle extends Shape {

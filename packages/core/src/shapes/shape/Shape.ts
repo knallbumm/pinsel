@@ -8,12 +8,10 @@ import {
   VerticalSizeAnchor,
 } from '../../scene/anchors';
 import type { Scene } from '../../scene/Scene';
+import type { BaseShape, ShapeAttributes, ShapeType } from '../../types';
 import type { CreationPositionAnchor } from '../../types/anchors/CreationPositionAnchor';
 import type { CreationSizeAnchor } from '../../types/anchors/CreationSizeAnchor';
-import type { CreationRectangle } from '../../types/CreationRectangle';
-import type { ShapeAttributes } from '../../types/ShapeAttributes';
-import type { ShapeType } from '../../types/ShapeType';
-import type { BaseShape } from './BaseShape';
+import type { CreationRectangle } from '../../types/shapes/rectangle/CreationRectangle';
 
 export class Shape implements BaseShape {
   /** Uniqe uuid which identifies the shape */

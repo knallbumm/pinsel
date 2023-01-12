@@ -1,6 +1,6 @@
+import type { SpecificResolvedShape } from '../../types';
 import type { CoordinateSpace } from '../../types/CoordinateSpace';
 import type { Size } from '../../types/Size';
-import type { SpecificResolvedShape } from '../../types/SpecificResolvedShape';
 
 export const transformToRealCoordiantes = (
   shapes: SpecificResolvedShape[],
