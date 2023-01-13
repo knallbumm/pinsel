@@ -10,7 +10,7 @@
     "typecheck": "turbo typecheck",
     "test": "turbo test",
     "changeset": "changeset",
-    "release": "turbo build && changeset publish"
+    "release": "pnpm build && changeset publish"
   },
   "keywords": [],
   "author": "",

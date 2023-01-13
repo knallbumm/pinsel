@@ -1,7 +1,6 @@
 ---
-"@pinsel/core": patch
-"@pinsel/demo": patch
-"@pinsel/renderer": patch
+'@pinsel/core': patch
+'@pinsel/renderer': patch
 ---
 
 Feature/improving structure and improving types
