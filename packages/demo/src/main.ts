@@ -14,6 +14,8 @@ const p = new Pinsel({
 const rect = rectangle({ width: 0.5, height: 0.3, x: 0.1, y: 0 });
 p.scene.add(rect);
 
+p.scene.fill = 'purple';
+
 // const rec2 = rectangle({
 //   width: rect.widthAnchor({ multiplier: 0.5 }),
 //   height: 0.2,
@@ -30,7 +32,6 @@ p.scene.add(
     y: rect.bottomAnchor(),
   })
 );
-
 
 p.commit();
 const end = performance.now();

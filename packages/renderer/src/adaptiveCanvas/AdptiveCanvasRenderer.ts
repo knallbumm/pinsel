@@ -18,12 +18,23 @@ export class AdptiveCanvasRenderer extends Renderer {
       return;
     }
     context.beginPath();
-    context.clearRect(
-      0,
-      0,
-      this.calculatedSize.width,
-      this.calculatedSize.height
-    );
+
+    if (frameUpdate.scene.fill) {
+      context.fillStyle = frameUpdate.scene.fill;
+      context.fillRect(
+        0,
+        0,
+        this.calculatedSize.width,
+        this.calculatedSize.height
+      );
+    } else {
+      context.clearRect(
+        0,
+        0,
+        this.calculatedSize.width,
+        this.calculatedSize.height
+      );
+    }
 
     for (const shape of frameUpdate.objects) {
       switch (shape.type) {

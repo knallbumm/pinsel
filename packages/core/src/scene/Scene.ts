@@ -23,6 +23,8 @@ export class Scene {
   renderer: Renderer;
   coordinateSpace: CoordinateSpace;
 
+  fill = 'white';
+
   private isBatchUpdating = false;
 
   constructor(pinsel: Pinsel, options: SceneOptions) {
@@ -59,6 +61,9 @@ export class Scene {
         size,
         this.coordinateSpace
       ),
+      scene: {
+        fill: this.fill,
+      },
     };
   }
 
