@@ -14,22 +14,23 @@ const p = new Pinsel({
 const rect = rectangle({ width: 0.5, height: 0.3, x: 0.1, y: 0 });
 p.scene.add(rect);
 
-const rec2 = rectangle({
-  width: rect.widthAnchor({ multiplier: 0.5 }),
-  height: 0.2,
-  x: rect.trailingAnchor(),
-  y: rect.bottomAnchor(),
-});
-p.scene.add(rec2);
+// const rec2 = rectangle({
+//   width: rect.widthAnchor({ multiplier: 0.5 }),
+//   height: 0.2,
+//   x: rect.trailingAnchor(),
+//   y: rect.bottomAnchor(),
+// });
+// p.scene.add(rec2);
 
 p.scene.add(
   rectangle({
-    width: 0.5,
+    width: p.scene.widthAnchor({ multiplier: 0.5 }),
     height: 0.2,
-    x: rect.trailingAnchor(),
+    x: p.scene.leadingAnchor(),
     y: rect.bottomAnchor(),
   })
 );
+
 
 p.commit();
 const end = performance.now();

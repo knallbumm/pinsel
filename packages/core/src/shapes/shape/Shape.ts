@@ -106,46 +106,62 @@ export class Shape implements BaseShape {
   get actualWidth(): number {
     if (typeof this.WIDTH == 'number') {
       return this.WIDTH;
-    } else {
+    } else if (this.WIDTH.root.shape instanceof Shape) {
       return (
         this.WIDTH.root.shape.actualWidth * this.WIDTH.multiplier +
         this.WIDTH.constant
       );
+    } else {
+      return this.SCENE?.coordinateSpace == 'ADAPTIVE'
+        ? this.WIDTH.multiplier + this.WIDTH.constant
+        : this.WIDTH.root.shape.renderer.calculatedSize.width *
+            this.WIDTH.multiplier +
+            this.WIDTH.constant;
     }
   }
 
   get actualHeight(): number {
     if (typeof this.HEIGHT == 'number') {
       return this.HEIGHT;
-    } else {
+    } else if (this.HEIGHT.root.shape instanceof Shape) {
       return (
         this.HEIGHT.root.shape.actualHeight * this.HEIGHT.multiplier +
         this.HEIGHT.constant
       );
+    } else {
+      return this.SCENE?.coordinateSpace == 'ADAPTIVE'
+        ? this.HEIGHT.multiplier + this.HEIGHT.constant
+        : this.HEIGHT.root.shape.renderer.calculatedSize.height *
+            this.HEIGHT.multiplier +
+            this.HEIGHT.constant;
     }
   }
 
   get actualX(): number {
     if (typeof this.X == 'number') {
       return this.X;
-    } else {
+    } else if (this.X.root.shape instanceof Shape) {
       return (
         this.X.root.shape.actualX +
         (this.X.type == 'TRAILING' ? this.X.root.shape.actualWidth : 0) +
         this.X.constant
       );
+    } else {
+      return 0 + this.X.constant;
     }
   }
 
   get actualY(): number {
     if (typeof this.Y == 'number') {
       return this.Y;
-    } else {
+    } else if (this.Y.root.shape instanceof Shape) {
       return (
         this.Y.root.shape.actualY +
         (this.Y.type == 'BOTTOM' ? this.Y.root.shape.actualHeight : 0) +
         this.Y.constant
       );
+    } else {
+      return 0 + this.Y.constant;
     }
   }
 
