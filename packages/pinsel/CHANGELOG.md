@@ -1,5 +1,15 @@
 # pinsel
 
+## 0.0.4
+
+### Patch Changes
+
+- 005eff2: Adding support for scene based anchors and scene background fill
+- Updated dependencies [1d7283c]
+- Updated dependencies [005eff2]
+  - @pinsel/core@0.0.4
+  - @pinsel/renderer@0.0.4
+
 ## 0.0.3
 
 ### Patch Changes
