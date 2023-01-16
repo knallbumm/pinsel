@@ -1,1 +1,1 @@
-export type ShapeType = 'RECTANGLE';
+export type ShapeType = 'RECTANGLE' | 'CIRCLE';

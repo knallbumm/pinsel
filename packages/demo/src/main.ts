@@ -1,6 +1,6 @@
 import './style.css';
 
-import { AdptiveCanvasRenderer, Pinsel, rectangle } from 'pinsel';
+import { AdptiveCanvasRenderer, circle, Pinsel, rectangle } from 'pinsel';
 
 const start = performance.now();
 
@@ -30,6 +30,14 @@ p.scene.add(
     height: 0.2,
     x: p.scene.leadingAnchor(),
     y: rect.bottomAnchor(),
+  })
+);
+
+p.scene.add(
+  circle({
+    radius: 0.1,
+    x: 0.5,
+    y: 0.5,
   })
 );
 

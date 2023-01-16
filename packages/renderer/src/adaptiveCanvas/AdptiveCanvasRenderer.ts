@@ -2,6 +2,7 @@ import type { Scene } from '@pinsel/core';
 import { Renderer } from '@pinsel/core';
 import type { RendererOptions } from '@pinsel/core/src/types/RendererOptions';
 
+import { renderCircle } from '../helpers/canvas/shapes/circle/renderCircle';
 import { renderRectangle } from '../helpers/canvas/shapes/rectangle/renderRectangle';
 
 export class AdptiveCanvasRenderer extends Renderer {
@@ -40,6 +41,9 @@ export class AdptiveCanvasRenderer extends Renderer {
       switch (shape.type) {
         case 'RECTANGLE':
           renderRectangle(context, shape);
+          break;
+        case 'CIRCLE':
+          renderCircle(context, shape);
       }
     }
   }

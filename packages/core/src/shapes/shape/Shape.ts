@@ -8,10 +8,16 @@ import {
   VerticalSizeAnchor,
 } from '../../scene/anchors';
 import type { Scene } from '../../scene/Scene';
-import type { BaseShape, ShapeAttributes, ShapeType } from '../../types';
+import type {
+  BaseShape,
+  CreationShape,
+  ShapeAttributes,
+  ShapeType,
+} from '../../types';
 import type { CreationPositionAnchor } from '../../types/anchors/CreationPositionAnchor';
 import type { CreationSizeAnchor } from '../../types/anchors/CreationSizeAnchor';
-import type { CreationRectangle } from '../../types/shapes/rectangle/CreationRectangle';
+import type { Height } from '../../types/Height';
+import type { Width } from '../../types/Width';
 
 export class Shape implements BaseShape {
   /** Uniqe uuid which identifies the shape */
@@ -28,26 +34,13 @@ export class Shape implements BaseShape {
   /** Y-Position of the shape */
   protected Y: number | VerticalPositionAnchor;
 
-  /** Width of the shape */
-  protected WIDTH: number | HorizontalSizeAnchor;
-
-  /** Height of the shape */
-  protected HEIGHT: number | VerticalSizeAnchor;
-
   /** Fill of the shape */
   protected FILL = 'white';
 
-  constructor({
-    x = 0,
-    y = 0,
-    width,
-    height,
-    type,
-  }: CreationRectangle & ShapeAttributes) {
+  constructor({ x = 0, y = 0, type }: CreationShape & ShapeAttributes) {
     this.X = x;
     this.Y = y;
-    this.WIDTH = width;
-    this.HEIGHT = height;
+
     this.type = type;
   }
 
@@ -76,22 +69,12 @@ export class Shape implements BaseShape {
     this.SCENE?._expectCommit();
   }
 
-  get width() {
-    return this.WIDTH;
+  get width(): Width {
+    return 99;
   }
 
-  set width(val: typeof this.WIDTH) {
-    this.WIDTH = val;
-    this.SCENE?._expectCommit();
-  }
-
-  get height() {
-    return this.HEIGHT;
-  }
-
-  set height(val: typeof this.HEIGHT) {
-    this.HEIGHT = val;
-    this.SCENE?._expectCommit();
+  get height(): Height {
+    return 99;
   }
 
   get fill() {
@@ -104,36 +87,36 @@ export class Shape implements BaseShape {
   }
 
   get actualWidth(): number {
-    if (typeof this.WIDTH == 'number') {
-      return this.WIDTH;
-    } else if (this.WIDTH.root.shape instanceof Shape) {
+    if (typeof this.width == 'number') {
+      return this.width;
+    } else if (this.width.root.shape instanceof Shape) {
       return (
-        this.WIDTH.root.shape.actualWidth * this.WIDTH.multiplier +
-        this.WIDTH.constant
+        this.width.root.shape.actualWidth * this.width.multiplier +
+        this.width.constant
       );
     } else {
       return this.SCENE?.coordinateSpace == 'ADAPTIVE'
-        ? this.WIDTH.multiplier + this.WIDTH.constant
-        : this.WIDTH.root.shape.renderer.calculatedSize.width *
-            this.WIDTH.multiplier +
-            this.WIDTH.constant;
+        ? this.width.multiplier + this.width.constant
+        : this.width.root.shape.renderer.calculatedSize.width *
+            this.width.multiplier +
+            this.width.constant;
     }
   }
 
   get actualHeight(): number {
-    if (typeof this.HEIGHT == 'number') {
-      return this.HEIGHT;
-    } else if (this.HEIGHT.root.shape instanceof Shape) {
+    if (typeof this.height == 'number') {
+      return this.height;
+    } else if (this.height.root.shape instanceof Shape) {
       return (
-        this.HEIGHT.root.shape.actualHeight * this.HEIGHT.multiplier +
-        this.HEIGHT.constant
+        this.height.root.shape.actualHeight * this.height.multiplier +
+        this.height.constant
       );
     } else {
       return this.SCENE?.coordinateSpace == 'ADAPTIVE'
-        ? this.HEIGHT.multiplier + this.HEIGHT.constant
-        : this.HEIGHT.root.shape.renderer.calculatedSize.height *
-            this.HEIGHT.multiplier +
-            this.HEIGHT.constant;
+        ? this.height.multiplier + this.height.constant
+        : this.height.root.shape.renderer.calculatedSize.height *
+            this.height.multiplier +
+            this.height.constant;
     }
   }
 
