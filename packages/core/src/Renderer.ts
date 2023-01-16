@@ -29,7 +29,7 @@ export class Renderer {
   }
 
   renderNewFrame(scene: Scene) {
-    console.log('rendering', scene);
+    console.info('rendering', scene);
   }
 
   protected appendToContainer() {

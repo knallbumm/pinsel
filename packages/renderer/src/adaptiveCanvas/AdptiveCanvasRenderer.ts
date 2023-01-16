@@ -13,6 +13,7 @@ export class AdptiveCanvasRenderer extends Renderer {
   }
 
   renderNewFrame(scene: Scene) {
+    const start = performance.now();
     const frameUpdate = scene.getFrameUpdate(this.calculatedSize);
     const context = (this.domElement as HTMLCanvasElement).getContext('2d');
     if (!context) {
@@ -46,6 +47,8 @@ export class AdptiveCanvasRenderer extends Renderer {
           renderCircle(context, shape);
       }
     }
+    const end = performance.now();
+    console.info(`Render-Duration: ${end - start}`);
   }
 
   resize(): void {

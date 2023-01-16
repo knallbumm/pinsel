@@ -37,6 +37,8 @@ export class Shape implements BaseShape {
   /** Fill of the shape */
   protected FILL = 'white';
 
+  protected STROKE?: string = undefined;
+
   constructor({ x = 0, y = 0, type }: CreationShape & ShapeAttributes) {
     this.X = x;
     this.Y = y;
@@ -83,6 +85,15 @@ export class Shape implements BaseShape {
 
   set fill(val: typeof this.FILL) {
     this.FILL = val;
+    this.SCENE?._expectCommit();
+  }
+
+  get stroke() {
+    return this.STROKE;
+  }
+
+  set stroke(val: typeof this.STROKE) {
+    this.STROKE = val;
     this.SCENE?._expectCommit();
   }
 

@@ -2,8 +2,6 @@ import './style.css';
 
 import { AdptiveCanvasRenderer, circle, Pinsel, rectangle } from 'pinsel';
 
-const start = performance.now();
-
 const container = document.getElementById('app');
 
 const p = new Pinsel({
@@ -12,6 +10,7 @@ const p = new Pinsel({
 });
 
 const rect = rectangle({ width: 0.5, height: 0.3, x: 0.1, y: 0 });
+rect.stroke = 'pink';
 p.scene.add(rect);
 
 p.scene.fill = 'purple';
@@ -33,18 +32,15 @@ p.scene.add(
   })
 );
 
-p.scene.add(
-  circle({
-    radius: 0.1,
-    x: 0.5,
-    y: 0.5,
-  })
-);
+const circ = circle({
+  radius: 0.1,
+  x: 0.5,
+  y: 0.5,
+});
+circ.stroke = 'green';
+p.scene.add(circ);
 
 p.commit();
-const end = performance.now();
-
-console.log(`Performance indicator: ${end - start}`);
 
 document.addEventListener('click', () => {
   p.scene.updateBatch(() => {

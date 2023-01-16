@@ -7,6 +7,7 @@ export const resolveCircle = (shape: Circle): ResolvedCircle => {
     x: shape.actualX,
     y: shape.actualY,
     fill: shape.fill,
+    stroke: shape.stroke,
     radius: shape.radius,
   };
 };

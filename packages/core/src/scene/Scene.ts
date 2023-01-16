@@ -7,7 +7,7 @@ import type { CreationPositionAnchor } from '../types/anchors/CreationPositionAn
 import type { CreationSizeAnchor } from '../types/anchors/CreationSizeAnchor';
 import type { CoordinateSpace } from '../types/CoordinateSpace';
 import type { FrameUpdate } from '../types/FrameUpdate';
-import type { SceneOptions } from '../types/SceneOptions';
+import type { SceneOptions } from '../types/scene/SceneOptions';
 import type { Size } from '../types/Size';
 import {
   HorizontalPositionAnchor,
@@ -69,7 +69,6 @@ export class Scene {
 
   updateAll() {
     this.resolvedShapes = this.shapes.map((s) => resolveShape(s));
-    console.log(this.resolvedShapes);
   }
 
   updateBatch(fn: () => void) {

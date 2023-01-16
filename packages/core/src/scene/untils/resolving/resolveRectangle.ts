@@ -7,6 +7,7 @@ export const resolveRectangle = (shape: Rectangle): ResolvedRectangle => {
     x: shape.actualX,
     y: shape.actualY,
     fill: shape.fill,
+    stroke: shape.stroke,
     width: shape.actualWidth,
     height: shape.actualHeight,
   };
