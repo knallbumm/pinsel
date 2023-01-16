@@ -3,6 +3,7 @@ import { Renderer } from '@pinsel/core';
 import type { RendererOptions } from '@pinsel/core/src/types/RendererOptions';
 
 import { renderCircle } from '../helpers/canvas/shapes/circle/renderCircle';
+import { renderLabel } from '../helpers/canvas/shapes/label/renderLabel';
 import { renderRectangle } from '../helpers/canvas/shapes/rectangle/renderRectangle';
 
 export class AdptiveCanvasRenderer extends Renderer {
@@ -45,6 +46,9 @@ export class AdptiveCanvasRenderer extends Renderer {
           break;
         case 'CIRCLE':
           renderCircle(context, shape);
+          break;
+        case 'LABEL':
+          renderLabel(context, shape);
       }
     }
     const end = performance.now();

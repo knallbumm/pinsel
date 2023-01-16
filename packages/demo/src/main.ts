@@ -1,6 +1,12 @@
 import './style.css';
 
-import { AdptiveCanvasRenderer, circle, Pinsel, rectangle } from 'pinsel';
+import {
+  AdptiveCanvasRenderer,
+  circle,
+  label,
+  Pinsel,
+  rectangle,
+} from 'pinsel';
 
 const container = document.getElementById('app');
 
@@ -39,6 +45,13 @@ const circ = circle({
 });
 circ.stroke = 'green';
 p.scene.add(circ);
+
+const text = label({
+  text: 'Keiner mag dich!',
+  x: 0.5,
+  y: 0.5,
+});
+p.scene.add(text);
 
 p.commit();
 

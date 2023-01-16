@@ -1,5 +1,7 @@
 import type { Circle, Rectangle, Shape } from '../../shapes';
+import type { Label } from '../../shapes/label';
 import { resolveCircle } from './resolving/resolveCircle';
+import { resolveLabel } from './resolving/resolveLabel';
 import { resolveRectangle } from './resolving/resolveRectangle';
 
 export const resolveShape = (shape: Shape) => {
@@ -19,5 +21,8 @@ export const resolveShape = (shape: Shape) => {
 
     case 'RECTANGLE':
       return resolveRectangle(shape as Rectangle);
+
+    case 'LABEL':
+      return resolveLabel(shape as Label);
   }
 };

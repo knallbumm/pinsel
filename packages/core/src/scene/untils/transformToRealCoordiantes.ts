@@ -26,6 +26,13 @@ export const transformToRealCoordiantes = (
             x: shape.x * size.width,
             y: shape.y * size.height,
           };
+
+        case 'LABEL':
+          return {
+            ...shape,
+            x: shape.x * size.width,
+            y: shape.y * size.height,
+          };
       }
     });
   }
