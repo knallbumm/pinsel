@@ -1,5 +1,11 @@
 # @pinsel/core
 
+## 0.0.5
+
+### Patch Changes
+
+- 6254031: Adding support to draw circles and support basic strokes
+
 ## 0.0.4
 
 ### Patch Changes
