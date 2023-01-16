@@ -1,5 +1,13 @@
 # @pinsel/renderer
 
+## 0.0.5
+
+### Patch Changes
+
+- 6254031: Adding support to draw circles and support basic strokes
+- Updated dependencies [6254031]
+  - @pinsel/core@0.0.5
+
 ## 0.0.4
 
 ### Patch Changes
