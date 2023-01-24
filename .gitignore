@@ -38,4 +38,4 @@ coverage
 sw.*
 .env
 .output
-.vitepress
+cache
