@@ -37,8 +37,10 @@ jobs:
           npm_registry: https://registry.npmjs.org/
       - name: Setup Pages
         uses: actions/configure-pages@v2
+      - name: Install turbo
+        run: pnpm i -g turbo
       - name: Static HTML export with Nuxt
-        run: turbo run build --scope=docs
+        run: turbo run build --filter=./packages/docs
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
