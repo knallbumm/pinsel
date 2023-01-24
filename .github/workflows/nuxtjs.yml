@@ -40,7 +40,7 @@ jobs:
       - name: Install turbo
         run: pnpm i -g turbo
       - name: Static HTML export with Nuxt
-        run: turbo run build --filter=./packages/docs
+        run: turbo run build --filter=@pinsel/docs
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
