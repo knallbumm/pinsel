@@ -1,5 +1,13 @@
 # @pinsel/renderer
 
+## 0.0.6
+
+### Patch Changes
+
+- 7babfe3: Label font, sharp rendering an Devices with Retina Screens & other improvements
+- Updated dependencies [7babfe3]
+  - @pinsel/core@0.0.6
+
 ## 0.0.5
 
 ### Patch Changes
