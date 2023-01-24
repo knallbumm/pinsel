@@ -1,7 +1,8 @@
 import type { GroupedAttributes } from './GroupedAttributes';
+import Logger from './helper/Logger';
 
 export class Commitable {
   commit(attributes: GroupedAttributes) {
-    console.log('Did commit');
+    Logger.info('CORE', 'Commited attributes', attributes);
   }
 }
