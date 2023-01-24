@@ -39,6 +39,7 @@ export class Scene {
   add(shape: Shape) {
     if (!this.shapes.includes(shape)) {
       // logger.info('CORE', `Inserted new shape`, shape);
+      console.log('Adding new shape', shape);
       shape.scene = this;
       this.shapes.push(shape);
       this.resolvedShapes.push(resolveShape(shape));

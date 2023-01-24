@@ -7,5 +7,6 @@ export { Pinsel };
 
 export { Renderer, Runner, Scene };
 
+export * from './src/additions';
 export * from './src/shapes';
 export * from './src/types';

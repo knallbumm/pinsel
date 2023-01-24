@@ -3,6 +3,7 @@ import './style.css';
 import {
   AdptiveCanvasRenderer,
   circle,
+  font,
   label,
   Pinsel,
   rectangle,
@@ -47,11 +48,24 @@ circ.stroke = 'green';
 p.scene.add(circ);
 
 const text = label({
-  text: 'Keiner mag dich!',
+  text: 'PINSEL is the best!',
   x: 0.5,
   y: 0.5,
 });
+text.font = font(32, 'Fira Code');
+text.font.size = 35;
+
 p.scene.add(text);
+
+p.scene.add(
+  rectangle({
+    x: text.trailingAnchor(),
+    y: text.topAnchor(),
+    width: 20,
+    height: 200,
+    fill: 'yellow',
+  })
+);
 
 p.commit();
 

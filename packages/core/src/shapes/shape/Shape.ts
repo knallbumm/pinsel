@@ -1,5 +1,7 @@
 import { v4 as uuid } from 'uuid';
 
+import type { Commitable } from '../../Commitable';
+import type { GroupedAttributes } from '../../GroupedAttributes';
 import Logger from '../../helper/Logger';
 import {
   HorizontalPositionAnchor,
@@ -19,7 +21,7 @@ import type { CreationSizeAnchor } from '../../types/anchors/CreationSizeAnchor'
 import type { Height } from '../../types/Height';
 import type { Width } from '../../types/Width';
 
-export class Shape implements BaseShape {
+export class Shape implements BaseShape, Commitable {
   /** Uniqe uuid which identifies the shape */
   readonly id: string = uuid();
 
@@ -39,11 +41,17 @@ export class Shape implements BaseShape {
 
   protected STROKE?: string = undefined;
 
-  constructor({ x = 0, y = 0, type }: CreationShape & ShapeAttributes) {
+  constructor({ x = 0, y = 0, type, fill }: CreationShape & ShapeAttributes) {
     this.X = x;
     this.Y = y;
 
     this.type = type;
+    this.FILL = fill ?? 'white';
+  }
+
+  commit(attributes: GroupedAttributes): void {
+    console.log('Attributes changed', attributes);
+    this.SCENE?._expectCommit();
   }
 
   set scene(val: Scene) {

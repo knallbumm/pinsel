@@ -1,6 +1,7 @@
 import type { Scene } from '@pinsel/core';
 import { Renderer } from '@pinsel/core';
 import type { RendererOptions } from '@pinsel/core/src/types/RendererOptions';
+import type { Size } from '@pinsel/core/src/types/Size';
 
 import { renderCircle } from '../helpers/canvas/shapes/circle/renderCircle';
 import { renderLabel } from '../helpers/canvas/shapes/label/renderLabel';
@@ -15,7 +16,9 @@ export class AdptiveCanvasRenderer extends Renderer {
 
   renderNewFrame(scene: Scene) {
     const start = performance.now();
-    const frameUpdate = scene.getFrameUpdate(this.calculatedSize);
+    const pixelSize = this.convertToPixelRatio(this.calculatedSize);
+    const frameUpdate = scene.getFrameUpdate(pixelSize);
+
     const context = (this.domElement as HTMLCanvasElement).getContext('2d');
     if (!context) {
       return;
@@ -24,19 +27,9 @@ export class AdptiveCanvasRenderer extends Renderer {
 
     if (frameUpdate.scene.fill) {
       context.fillStyle = frameUpdate.scene.fill;
-      context.fillRect(
-        0,
-        0,
-        this.calculatedSize.width,
-        this.calculatedSize.height
-      );
+      context.fillRect(0, 0, pixelSize.width, pixelSize.height);
     } else {
-      context.clearRect(
-        0,
-        0,
-        this.calculatedSize.width,
-        this.calculatedSize.height
-      );
+      context.clearRect(0, 0, pixelSize.width, pixelSize.height);
     }
 
     for (const shape of frameUpdate.objects) {
@@ -51,6 +44,7 @@ export class AdptiveCanvasRenderer extends Renderer {
           renderLabel(context, shape);
       }
     }
+
     const end = performance.now();
     console.info(`Render-Duration: ${end - start}`);
   }
@@ -58,11 +52,30 @@ export class AdptiveCanvasRenderer extends Renderer {
   resize(): void {
     if (this.domElement) {
       const canvas = this.domElement as HTMLCanvasElement;
-      const width = this.container?.clientWidth;
-      const height = this.container?.clientHeight;
 
-      canvas.width = width ?? 300;
-      canvas.height = height ?? 300;
+      this.calculatedSize = {
+        width: this.container?.clientWidth ?? 300,
+        height: this.container?.clientHeight ?? 300,
+      };
+
+      this.setCanvasSize(canvas, this.calculatedSize);
     }
+  }
+
+  setCanvasSize(canvas: HTMLCanvasElement, size: Size) {
+    const pixelSize = this.convertToPixelRatio(size);
+
+    canvas.width = pixelSize.width ?? 300;
+    canvas.height = pixelSize.height ?? 300;
+    canvas.style.width = `${size.width}px`;
+    canvas.style.height = `${size.height}px`;
+  }
+
+  convertToPixelRatio(size: Size): Size {
+    const scale = window.devicePixelRatio;
+    return {
+      width: Math.floor(size.width * scale),
+      height: Math.floor(size.height * scale),
+    };
   }
 }

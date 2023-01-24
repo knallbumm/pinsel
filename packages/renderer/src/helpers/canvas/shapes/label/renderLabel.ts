@@ -6,6 +6,8 @@ export const renderLabel = (
 ) => {
   context.beginPath();
   context.fillStyle = 'black';
-  context.font = '48px sans-serif';
+  context.font = `${shape.font.weight} ${
+    shape.font.size * window.devicePixelRatio
+  }px ${shape.font.family}`;
   context.fillText(shape.text, shape.x, shape.y);
 };
