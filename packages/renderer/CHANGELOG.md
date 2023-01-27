@@ -1,5 +1,13 @@
 # @pinsel/renderer
 
+## 0.0.7
+
+### Patch Changes
+
+- 0d319fd: Basic support for exporting images
+- Updated dependencies [0d319fd]
+  - @pinsel/core@0.0.7
+
 ## 0.0.6
 
 ### Patch Changes
