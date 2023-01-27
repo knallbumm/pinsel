@@ -34,9 +34,44 @@ npm i pinsel
 _There is also the possibility to use only parts of Pinsel or to write extensions yourself. If you want to know more about this, have a look at the detailed documentation: `@pinsel/core` & `@pinsel/renderer`_
 
 ## Motivation
-We were looking for a Libary to help us draw on the HTML5 Canvas, but to our surprise we couldn't find a suitable one. Known libaries either have a strong focus on artistic use (e.g. p5.js), or are mainly designed to visualise data (e.g. D3.js). Others are only documented in fragments, are inconvenient to use or simply lack features.
+We were looking for a Libary to help us draw on the HTML5 Canvas, but to our surprise we couldn't find a suitable one. Known libaries either have a strong focus on artistic use (e.g. [p5.js](https://github.com/processing/p5.js?files=1)), or are mainly designed to visualise data (e.g. [D3.js](https://github.com/d3/d3)). Others are only documented in fragments, are inconvenient to use or simply lack features.
 
 This is how we came up with the idea of writing a library ourselves, with which simple little gimmicks can be implemented. One that is easy to use and designed for TypeScript.
+
+## Simple Usage
+```typescript
+// Creating Pinsel Instance
+const p = new Pinsel({
+  coordinateSpace: 'ADAPTIVE',
+});
+
+// Adding Rectangle
+const rect = rectangle({ width: 0.5, height: 0.3, x: 0.1, y: 0 });
+rect.stroke = 'pink';
+p.scene.add(rect);
+
+// Adding Circle
+const circ = circle({
+  radius: 0.1,
+  x: 0.5,
+  y: 0.5,
+});
+circ.stroke = 'green';
+p.scene.add(circ);
+
+// Adding Text
+const text = label({
+  text: 'PINSEL is the best!',
+  x: 0.5,
+  y: 0.5,
+});
+text.font = font(32, 'Fira Code');
+p.scene.add(text);
+
+```
+
+## Demo
+If you want to see more examples of what Pinsel could be used for, feel free to check out our examples at [demo.pinsel.xyz](https://demo.pinsel.xyz)
 
 ## Contributing
 
