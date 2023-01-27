@@ -1,5 +1,11 @@
 # @pinsel/core
 
+## 0.0.7
+
+### Patch Changes
+
+- 0d319fd: Basic support for exporting images
+
 ## 0.0.6
 
 ### Patch Changes
