@@ -9,6 +9,8 @@ export class Renderer {
 
   calculatedSize: Size = { width: 222, height: 222 };
 
+  protected EXPECTS_RENDER = false;
+
   constructor({ container, size = 'MAX' }: RendererOptions = { size: 'MAX' }) {
     this.container = container;
 
@@ -59,5 +61,13 @@ export class Renderer {
 
       this.resize(this.calculatedSize);
     });
+  }
+
+  expectRender() {
+    this.EXPECTS_RENDER = true;
+  }
+
+  get expectsRender() {
+    return this.EXPECTS_RENDER;
   }
 }

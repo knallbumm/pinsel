@@ -8,6 +8,10 @@ import { renderLabel } from '../helpers/canvas/shapes/label/renderLabel';
 import { renderRectangle } from '../helpers/canvas/shapes/rectangle/renderRectangle';
 
 export class AdptiveCanvasRenderer extends Renderer {
+  lastFrameId: number | undefined = undefined;
+
+  onFrameRenderDone: (() => void)[] = [];
+
   constructor(options: RendererOptions) {
     super(options);
     this.domElement = document.createElement('canvas');
@@ -47,6 +51,8 @@ export class AdptiveCanvasRenderer extends Renderer {
 
     const end = performance.now();
     console.info(`Render-Duration: ${end - start}`);
+
+    this.onFrameRenderDone.forEach((e) => e());
   }
 
   resize(): void {
@@ -77,5 +83,21 @@ export class AdptiveCanvasRenderer extends Renderer {
       width: Math.floor(size.width * scale),
       height: Math.floor(size.height * scale),
     };
+  }
+
+  async getImage(type: 'JPG' | 'PNG' = 'JPG'): Promise<string> {
+    const callbackArray = this.onFrameRenderDone;
+    const canvas = this.domElement as HTMLCanvasElement;
+    if (this.EXPECTS_RENDER) {
+      return new Promise(function (resolve) {
+        callbackArray.push(() => {
+          resolve(canvas.toDataURL());
+        });
+      });
+    } else {
+      return new Promise(function (resolve) {
+        resolve(canvas.toDataURL(type === 'PNG' ? 'image/png' : 'image/jpeg'));
+      });
+    }
   }
 }

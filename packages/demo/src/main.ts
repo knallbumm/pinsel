@@ -3,6 +3,7 @@ import './style.css';
 import {
   AdptiveCanvasRenderer,
   circle,
+  downloadImage,
   font,
   label,
   Pinsel,
@@ -10,10 +11,11 @@ import {
 } from 'pinsel';
 
 const container = document.getElementById('app');
+const renderer = new AdptiveCanvasRenderer({ container, size: 'MAX' });
 
 const p = new Pinsel({
   coordinateSpace: 'ADAPTIVE',
-  renderer: new AdptiveCanvasRenderer({ container, size: 'MAX' }),
+  renderer,
 });
 
 const rect = rectangle({ width: 0.5, height: 0.3, x: 0.1, y: 0 });
@@ -76,3 +78,10 @@ document.addEventListener('click', () => {
     rect.fill = 'red';
   });
 });
+
+const renderCanvas = async () => {
+  const image = await renderer.getImage('PNG');
+  downloadImage(image);
+};
+
+// void renderCanvas();
