@@ -12,6 +12,7 @@
   </a>
 </p>
 
+
 ## Features
 
 - 🖌️ Draw Rectangles, Circles, Text, Images and Paths
@@ -20,6 +21,10 @@
 - 🙏🏽 Framework agnostic (Works with React, Vue, Svelte & Co.)
 - 🖼️ Canvas- & SVG-Support
 - 🎁 Many more little things that make developers happy
+
+## Relevant Links
+- [Full Documentation](https://docs.pinsel.xyz)
+- [Examples](https://demo.pinsel.xyz)
 
 ## Installation
 
@@ -33,12 +38,8 @@ npm i pinsel
 
 _There is also the possibility to use only parts of Pinsel or to write extensions yourself. If you want to know more about this, have a look at the detailed documentation: `@pinsel/core` & `@pinsel/renderer`_
 
-## Motivation
-We were looking for a Libary to help us draw on the HTML5 Canvas, but to our surprise we couldn't find a suitable one. Known libaries either have a strong focus on artistic use (e.g. [p5.js](https://github.com/processing/p5.js?files=1)), or are mainly designed to visualise data (e.g. [D3.js](https://github.com/d3/d3)). Others are only documented in fragments, are inconvenient to use or simply lack features.
-
-This is how we came up with the idea of writing a library ourselves, with which simple little gimmicks can be implemented. One that is easy to use and designed for TypeScript.
-
 ## Simple Usage
+
 ```typescript
 // Creating Pinsel Instance
 const p = new Pinsel({
@@ -67,15 +68,28 @@ const text = label({
 });
 text.font = font(32, 'Fira Code');
 p.scene.add(text);
-
 ```
 
+This code produces this output:
+
+
+## Motivation
+
+We were looking for a Libary to help us draw on the HTML5 Canvas, but to our surprise we couldn't find a suitable one. Known libaries either have a strong focus on artistic use (e.g. [p5.js](https://github.com/processing/p5.js?files=1)), or are mainly designed to visualise data (e.g. [D3.js](https://github.com/d3/d3)). Others are only documented in fragments, are inconvenient to use or simply lack features.
+
+This is how we came up with the idea of writing a library ourselves, with which simple little gimmicks can be implemented. One that is easy to use and designed for TypeScript.
+
 ## Demo
+
 If you want to see more examples of what Pinsel could be used for, feel free to check out our examples at [demo.pinsel.xyz](https://demo.pinsel.xyz)
 
-## Contributing
+## Support us 
 
+### Contributing
 This project is still at such an early stage that it is unfortunately not possible to contribute to it. As soon as we have reached a first stable state, we will open the project and look forward to any assistance.
+
+### Sponsoring
+If you like our work, we would of course be happy if you supported us with a small donation:
 
 ## Crew
 
