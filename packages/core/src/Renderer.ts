@@ -36,6 +36,12 @@ export abstract class Renderer {
   abstract renderNewFrame(scene: Scene): void;
 
   /**
+   * Handles the resize event
+   * @param size {Size} The size it resized to
+   */
+  protected abstract resize(size: Size): void;
+
+  /**
    * Appends the current domElement to the given container
    */
   protected appendToContainer() {
@@ -49,12 +55,6 @@ export abstract class Renderer {
       });
     }
   }
-
-  /**
-   * Handles the resize event
-   * @param size {Size} The size it resized to
-   */
-  protected abstract resize(size: Size): void;
 
   private listenOnResize() {
     if (!this.container) {
@@ -76,9 +76,5 @@ export abstract class Renderer {
 
   _expectRender() {
     this.EXPECTS_RENDER = true;
-  }
-
-  get expectsRender() {
-    return this.EXPECTS_RENDER;
   }
 }

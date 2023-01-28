@@ -4,11 +4,11 @@ import type { Commitable } from '../../Commitable';
 import type { GroupedAttributes } from '../../GroupedAttributes';
 import Logger from '../../helper/Logger';
 import {
-  HorizontalPositionAnchor,
-  HorizontalSizeAnchor,
-  VerticalPositionAnchor,
-  VerticalSizeAnchor,
-} from '../../scene/anchors';
+  HorizontalPositionConstraint,
+  HorizontalSizeConstraint,
+  VerticalPositionConstraint,
+  VerticalSizeConstraint,
+} from '../../scene/constraints';
 import type { Scene } from '../../scene/Scene';
 import type {
   BaseShape,
@@ -16,8 +16,8 @@ import type {
   ShapeAttributes,
   ShapeType,
 } from '../../types';
-import type { CreationPositionAnchor } from '../../types/anchors/CreationPositionAnchor';
-import type { CreationSizeAnchor } from '../../types/anchors/CreationSizeAnchor';
+import type { CreationPositionConstraint } from '../../types/constraints/CreationPositionConstraint';
+import type { CreationSizeConstraint } from '../../types/constraints/CreationSizeConstraint';
 import type { Height } from '../../types/Height';
 import type { Width } from '../../types/Width';
 
@@ -31,10 +31,10 @@ export class Shape implements BaseShape, Commitable {
   protected SCENE?: Scene = undefined;
 
   /** X-Position of the shape */
-  protected X: number | HorizontalPositionAnchor;
+  protected X: number | HorizontalPositionConstraint;
 
   /** Y-Position of the shape */
-  protected Y: number | VerticalPositionAnchor;
+  protected Y: number | VerticalPositionConstraint;
 
   /** Fill of the shape */
   protected FILL = 'white';
@@ -50,7 +50,7 @@ export class Shape implements BaseShape, Commitable {
   }
 
   commit(attributes: GroupedAttributes): void {
-    console.log('Attributes changed', attributes);
+    Logger.info('SHAPE', 'Attributes changed', attributes);
     this.SCENE?._expectCommit();
   }
 
@@ -167,51 +167,56 @@ export class Shape implements BaseShape, Commitable {
     }
   }
 
-  /* ANCHORS */
+  /* CONSTRAINTS */
 
-  widthAnchor({ multiplier, constant }: Omit<CreationSizeAnchor, 'root'> = {}) {
-    return new HorizontalSizeAnchor({ root: this, multiplier, constant });
-  }
-
-  heightAnchor({
+  widthConstraint({
     multiplier,
     constant,
-  }: Omit<CreationSizeAnchor, 'root'> = {}) {
-    return new VerticalSizeAnchor({ root: this, multiplier, constant });
+  }: Omit<CreationSizeConstraint, 'root'> = {}) {
+    return new HorizontalSizeConstraint({ root: this, multiplier, constant });
   }
 
-  leadingAnchor({
+  heightConstraint({
+    multiplier,
     constant,
-  }: Omit<CreationPositionAnchor, 'root' | 'type'> = {}) {
-    return new HorizontalPositionAnchor({
+  }: Omit<CreationSizeConstraint, 'root'> = {}) {
+    return new VerticalSizeConstraint({ root: this, multiplier, constant });
+  }
+
+  leadingConstraint({
+    constant,
+  }: Omit<CreationPositionConstraint, 'root' | 'type'> = {}) {
+    return new HorizontalPositionConstraint({
       root: this,
       constant,
       type: 'LEADING',
     });
   }
 
-  trailingAnchor({
+  trailingConstraint({
     constant,
-  }: Omit<CreationPositionAnchor, 'root' | 'type'> = {}) {
-    return new HorizontalPositionAnchor({
+  }: Omit<CreationPositionConstraint, 'root' | 'type'> = {}) {
+    return new HorizontalPositionConstraint({
       root: this,
       constant,
       type: 'TRAILING',
     });
   }
 
-  topAnchor({ constant }: Omit<CreationPositionAnchor, 'root' | 'type'> = {}) {
-    return new VerticalPositionAnchor({
+  topConstraint({
+    constant,
+  }: Omit<CreationPositionConstraint, 'root' | 'type'> = {}) {
+    return new VerticalPositionConstraint({
       root: this,
       constant,
       type: 'TOP',
     });
   }
 
-  bottomAnchor({
+  bottomConstraint({
     constant,
-  }: Omit<CreationPositionAnchor, 'root' | 'type'> = {}) {
-    return new VerticalPositionAnchor({
+  }: Omit<CreationPositionConstraint, 'root' | 'type'> = {}) {
+    return new VerticalPositionConstraint({
       root: this,
       constant,
       type: 'BOTTOM',

@@ -1,6 +1,6 @@
 import LogT from 'logt';
 
-type LoggerTags = 'CORE' | 'RUNNER' | 'RENDERER' | 'SHAPE';
+type LoggerTags = 'CORE' | 'RUNNER' | 'RENDERER' | 'SHAPE' | 'STATS';
 
 const logger = new LogT('silly');
 

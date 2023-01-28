@@ -1,5 +1,6 @@
 import type { Scene } from '@pinsel/core';
 import { Renderer } from '@pinsel/core';
+import Logger from '@pinsel/core/src/helper/Logger';
 import type { Size } from '@pinsel/core/src/types/Size';
 
 import { renderCircle } from '../helpers/canvas/shapes/circle/renderCircle';
@@ -12,8 +13,8 @@ export class AdptiveCanvasRenderer extends Renderer {
 
   onFrameRenderDone: (() => void)[] = [];
 
-  constructor(options: AdptiveCanvasRendererOptions) {
-    super({ size: options.size, container: options.container });
+  constructor(options: Partial<AdptiveCanvasRendererOptions>) {
+    super({ size: options.size ?? 'MAX', container: options.container });
     this.domElement = document.createElement('canvas');
     super.appendToContainer();
   }
@@ -50,7 +51,7 @@ export class AdptiveCanvasRenderer extends Renderer {
     }
 
     const end = performance.now();
-    console.info(`Render-Duration: ${end - start}`);
+    Logger.info('STATS', `Render-Duration: ${end - start}`);
 
     this.onFrameRenderDone.forEach((e) => e());
   }

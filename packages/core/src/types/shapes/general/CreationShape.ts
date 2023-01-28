@@ -1,10 +1,10 @@
 import type {
-  HorizontalPositionAnchor,
-  VerticalPositionAnchor,
-} from '../../../scene/anchors';
+  HorizontalPositionConstraint,
+  VerticalPositionConstraint,
+} from '../../../scene/constraints';
 
 export interface CreationShape {
-  x: number | HorizontalPositionAnchor;
-  y: number | VerticalPositionAnchor;
+  x: number | HorizontalPositionConstraint;
+  y: number | VerticalPositionConstraint;
   fill?: string;
 }

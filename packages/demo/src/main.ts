@@ -8,6 +8,7 @@ import {
   label,
   Pinsel,
   rectangle,
+  Runner,
 } from 'pinsel';
 
 const container = document.getElementById('app');
@@ -16,28 +17,22 @@ const renderer = new AdptiveCanvasRenderer({ container, size: 'MAX' });
 const p = new Pinsel({
   coordinateSpace: 'ADAPTIVE',
   renderer,
+  runner: new Runner(),
 });
 
 const rect = rectangle({ width: 0.5, height: 0.3, x: 0.1, y: 0 });
-rect.stroke = 'pink';
+rect.stroke = '#FB39FF';
 p.scene.add(rect);
 
-p.scene.fill = 'purple';
-
-// const rec2 = rectangle({
-//   width: rect.widthAnchor({ multiplier: 0.5 }),
-//   height: 0.2,
-//   x: rect.trailingAnchor(),
-//   y: rect.bottomAnchor(),
-// });
-// p.scene.add(rec2);
+p.scene.fill = 'white';
 
 p.scene.add(
   rectangle({
-    width: p.scene.widthAnchor({ multiplier: 0.5 }),
+    width: p.scene.widthConstraint({ multiplier: 0.5 }),
     height: 0.2,
-    x: p.scene.leadingAnchor(),
-    y: rect.bottomAnchor(),
+    x: p.scene.leadingConstraint(),
+    y: rect.bottomConstraint(),
+    fill: '#FB007B',
   })
 );
 
@@ -46,7 +41,8 @@ const circ = circle({
   x: 0.5,
   y: 0.5,
 });
-circ.stroke = 'green';
+circ.stroke = 'black';
+circ.fill = '#FFC02D';
 p.scene.add(circ);
 
 const text = label({
@@ -61,8 +57,8 @@ p.scene.add(text);
 
 p.scene.add(
   rectangle({
-    x: text.trailingAnchor(),
-    y: text.topAnchor(),
+    x: text.trailingConstraint(),
+    y: text.topConstraint(),
     width: 20,
     height: 200,
     fill: 'yellow',

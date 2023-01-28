@@ -17,7 +17,7 @@
 
 - 🖌️ Draw Rectangles, Circles, Text, Images and Paths
 - ⚡️ Optimized for Performance (efficient rerendering & caching, OffscreenCanvas, Adaptive Frame-Rate)
-- 🔗 Easy to use API with e.g. Width-Anchors (shapeA.width = shapeB.width)
+- 🔗 Easy to use API with e.g. Width-Constraints (shapeA.width = shapeB.width)
 - 🙏🏽 Framework agnostic (Works with React, Vue, Svelte & Co.)
 - 🖼️ Canvas- & SVG-Support
 - 🎁 Many more little things that make developers happy

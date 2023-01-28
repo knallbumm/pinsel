@@ -1,3 +1,3 @@
-import type { VerticalSizeAnchor } from '../scene/anchors';
+import type { VerticalSizeConstraint } from '../scene/constraints';
 
-export type Height = number | VerticalSizeAnchor;
+export type Height = number | VerticalSizeConstraint;

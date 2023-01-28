@@ -1,8 +1,8 @@
 import type { Scene } from '../../scene/Scene';
 import type { Shape } from '../../shapes';
 
-export interface CreationSizeAnchor {
+export interface CreationPositionConstraint {
   root: Shape | Scene;
-  multiplier?: number;
   constant?: number;
+  type: 'LEADING' | 'TRAILING' | 'TOP' | 'BOTTOM';
 }

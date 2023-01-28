@@ -1,3 +1,3 @@
-import type { HorizontalSizeAnchor } from '../scene/anchors';
+import type { HorizontalSizeConstraint } from '../scene/constraints';
 
-export type Width = number | HorizontalSizeAnchor;
+export type Width = number | HorizontalSizeConstraint;

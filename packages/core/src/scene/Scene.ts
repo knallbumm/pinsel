@@ -3,18 +3,18 @@ import type { Pinsel } from '../Pinsel';
 import type { Renderer } from '../Renderer';
 import type { Shape } from '../shapes';
 import type { SpecificResolvedShape } from '../types';
-import type { CreationPositionAnchor } from '../types/anchors/CreationPositionAnchor';
-import type { CreationSizeAnchor } from '../types/anchors/CreationSizeAnchor';
+import type { CreationPositionConstraint } from '../types/constraints/CreationPositionConstraint';
+import type { CreationSizeConstraint } from '../types/constraints/CreationSizeConstraint';
 import type { CoordinateSpace } from '../types/CoordinateSpace';
 import type { FrameUpdate } from '../types/FrameUpdate';
 import type { SceneOptions } from '../types/scene/SceneOptions';
 import type { Size } from '../types/Size';
 import {
-  HorizontalPositionAnchor,
-  HorizontalSizeAnchor,
-  VerticalPositionAnchor,
-  VerticalSizeAnchor,
-} from './anchors';
+  HorizontalPositionConstraint,
+  HorizontalSizeConstraint,
+  VerticalPositionConstraint,
+  VerticalSizeConstraint,
+} from './constraints';
 import { resolveShape } from './untils/resolveShape';
 import { transformToRealCoordiantes } from './untils/transformToRealCoordiantes';
 
@@ -38,8 +38,8 @@ export class Scene {
 
   add(shape: Shape) {
     if (!this.shapes.includes(shape)) {
-      // logger.info('CORE', `Inserted new shape`, shape);
-      console.log('Adding new shape', shape);
+      logger.info('CORE', `Inserted new shape`, shape);
+
       shape.scene = this;
       this.shapes.push(shape);
       this.resolvedShapes.push(resolveShape(shape));
@@ -79,51 +79,56 @@ export class Scene {
     this._expectCommit();
   }
 
-  /* ANCHORS */
+  /* CONSTRAINTS */
 
-  widthAnchor({ multiplier, constant }: Omit<CreationSizeAnchor, 'root'> = {}) {
-    return new HorizontalSizeAnchor({ root: this, multiplier, constant });
-  }
-
-  heightAnchor({
+  widthConstraint({
     multiplier,
     constant,
-  }: Omit<CreationSizeAnchor, 'root'> = {}) {
-    return new VerticalSizeAnchor({ root: this, multiplier, constant });
+  }: Omit<CreationSizeConstraint, 'root'> = {}) {
+    return new HorizontalSizeConstraint({ root: this, multiplier, constant });
   }
 
-  leadingAnchor({
+  heightConstraint({
+    multiplier,
     constant,
-  }: Omit<CreationPositionAnchor, 'root' | 'type'> = {}) {
-    return new HorizontalPositionAnchor({
+  }: Omit<CreationSizeConstraint, 'root'> = {}) {
+    return new VerticalSizeConstraint({ root: this, multiplier, constant });
+  }
+
+  leadingConstraint({
+    constant,
+  }: Omit<CreationPositionConstraint, 'root' | 'type'> = {}) {
+    return new HorizontalPositionConstraint({
       root: this,
       constant,
       type: 'LEADING',
     });
   }
 
-  trailingAnchor({
+  trailingConstraint({
     constant,
-  }: Omit<CreationPositionAnchor, 'root' | 'type'> = {}) {
-    return new HorizontalPositionAnchor({
+  }: Omit<CreationPositionConstraint, 'root' | 'type'> = {}) {
+    return new HorizontalPositionConstraint({
       root: this,
       constant,
       type: 'TRAILING',
     });
   }
 
-  topAnchor({ constant }: Omit<CreationPositionAnchor, 'root' | 'type'> = {}) {
-    return new VerticalPositionAnchor({
+  topConstraint({
+    constant,
+  }: Omit<CreationPositionConstraint, 'root' | 'type'> = {}) {
+    return new VerticalPositionConstraint({
       root: this,
       constant,
       type: 'TOP',
     });
   }
 
-  bottomAnchor({
+  bottomConstraint({
     constant,
-  }: Omit<CreationPositionAnchor, 'root' | 'type'> = {}) {
-    return new VerticalPositionAnchor({
+  }: Omit<CreationPositionConstraint, 'root' | 'type'> = {}) {
+    return new VerticalPositionConstraint({
       root: this,
       constant,
       type: 'BOTTOM',
