@@ -1,19 +1,19 @@
 import type { Scene } from '@pinsel/core';
 import { Renderer } from '@pinsel/core';
-import type { RendererOptions } from '@pinsel/core/src/types/RendererOptions';
 import type { Size } from '@pinsel/core/src/types/Size';
 
 import { renderCircle } from '../helpers/canvas/shapes/circle/renderCircle';
 import { renderLabel } from '../helpers/canvas/shapes/label/renderLabel';
 import { renderRectangle } from '../helpers/canvas/shapes/rectangle/renderRectangle';
+import type { AdptiveCanvasRendererOptions } from './types/AdptiveCanvasRendererOptions';
 
 export class AdptiveCanvasRenderer extends Renderer {
   lastFrameId: number | undefined = undefined;
 
   onFrameRenderDone: (() => void)[] = [];
 
-  constructor(options: RendererOptions) {
-    super(options);
+  constructor(options: AdptiveCanvasRendererOptions) {
+    super({ size: options.size, container: options.container });
     this.domElement = document.createElement('canvas');
     super.appendToContainer();
   }
@@ -55,16 +55,11 @@ export class AdptiveCanvasRenderer extends Renderer {
     this.onFrameRenderDone.forEach((e) => e());
   }
 
-  resize(): void {
+  resize(size: Size): void {
     if (this.domElement) {
       const canvas = this.domElement as HTMLCanvasElement;
 
-      this.calculatedSize = {
-        width: this.container?.clientWidth ?? 300,
-        height: this.container?.clientHeight ?? 300,
-      };
-
-      this.setCanvasSize(canvas, this.calculatedSize);
+      this.setCanvasSize(canvas, size);
     }
   }
 

@@ -1,9 +1,8 @@
-import Logger from './helper/Logger';
 import type { Scene } from './scene/Scene';
-import type { RendererOptions } from './types/RendererOptions';
+import type { RendererOptions } from './types/renderer/RendererOptions';
 import type { Size } from './types/Size';
 
-export class Renderer {
+export abstract class Renderer {
   container?: HTMLElement | null;
   domElement?: HTMLElement | null = undefined;
 
@@ -30,20 +29,32 @@ export class Renderer {
     }
   }
 
-  renderNewFrame(scene: Scene) {
-    console.info('rendering', scene);
-  }
+  /**
+   * Renders the current state of the given Scene
+   * @param scene The Scene to render
+   */
+  abstract renderNewFrame(scene: Scene): void;
 
+  /**
+   * Appends the current domElement to the given container
+   */
   protected appendToContainer() {
     if (this.container && this.domElement) {
       this.container.appendChild(this.domElement);
       this.resize(this.calculatedSize);
+    } else {
+      console.error('Either domElement or container are not present', {
+        container: this.container,
+        domElement: this.domElement,
+      });
     }
   }
 
-  protected resize(size: Size) {
-    Logger.info('RENDERER', 'Resized to:', size);
-  }
+  /**
+   * Handles the resize event
+   * @param size {Size} The size it resized to
+   */
+  protected abstract resize(size: Size): void;
 
   private listenOnResize() {
     if (!this.container) {
@@ -63,7 +74,7 @@ export class Renderer {
     });
   }
 
-  expectRender() {
+  _expectRender() {
     this.EXPECTS_RENDER = true;
   }
 

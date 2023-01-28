@@ -1,5 +1,4 @@
 import Logger from './helper/Logger';
-import { Renderer } from './Renderer';
 import { Runner } from './Runner';
 import { Scene } from './scene/Scene';
 import type { PinselOptions } from './types';
@@ -10,9 +9,9 @@ export class Pinsel {
   readonly coordinateSpace: CoordinateSpace;
   runner?: Runner;
 
-  constructor(options: Partial<PinselOptions>) {
+  constructor(options: PinselOptions) {
     this.scene = new Scene(this, {
-      renderer: options.renderer ?? new Renderer(),
+      renderer: options.renderer,
       coordinateSpace: options.coordinateSpace ?? 'FIXED',
     });
     this.coordinateSpace = options.coordinateSpace ?? 'ADAPTIVE';
