@@ -64,6 +64,7 @@ export class Label extends Shape {
     document.body.append(textElement);
 
     if (this.SCENE?.coordinateSpace == 'ADAPTIVE') {
+      // TODO: Fixing ADAPTIVE System
       this.WIDTH =
         textElement.clientWidth / this.SCENE.renderer.calculatedSize.width;
       this.HEIGHT =

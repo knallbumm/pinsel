@@ -25,6 +25,8 @@ export class Scene {
 
   fill = 'white';
 
+  relativeTo: 'WIDTH' | 'HEIGHT' = 'WIDTH';
+
   private isBatchUpdating = false;
 
   constructor(pinsel: Pinsel, options: SceneOptions) {
@@ -59,13 +61,19 @@ export class Scene {
     return {
       objects: transformToRealCoordiantes(
         this.resolvedShapes,
-        size,
+        this.relativeTo == 'HEIGHT' ? size.height : size.width,
         this.coordinateSpace
       ),
       scene: {
         fill: this.fill,
       },
     };
+  }
+
+  get referenceLength(): number {
+    return this.relativeTo == 'HEIGHT'
+      ? this.renderer.calculatedSize.height
+      : this.renderer.calculatedSize.width;
   }
 
   updateAll() {

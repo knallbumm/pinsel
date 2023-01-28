@@ -39,11 +39,21 @@ p.scene.add(
 const circ = circle({
   radius: 0.1,
   x: 0.5,
-  y: 0.5,
+  y: 0.2,
 });
 circ.stroke = 'black';
 circ.fill = '#FFC02D';
+circ.anchor = 'CENTER';
 p.scene.add(circ);
+
+const positionRect = rectangle({
+  x: circ.trailingConstraint(),
+  y: circ.bottomConstraint(),
+  width: 0.05,
+  height: 0.05,
+  fill: 'green',
+});
+p.scene.add(positionRect);
 
 const text = label({
   text: 'PINSEL is the best!',

@@ -10,6 +10,7 @@ import {
   VerticalSizeConstraint,
 } from '../../scene/constraints';
 import type { Scene } from '../../scene/Scene';
+import { resolveShortAnchor } from '../../scene/untils/resolveShortAnchor';
 import type {
   BaseShape,
   CreationShape,
@@ -19,6 +20,7 @@ import type {
 import type { CreationPositionConstraint } from '../../types/constraints/CreationPositionConstraint';
 import type { CreationSizeConstraint } from '../../types/constraints/CreationSizeConstraint';
 import type { Height } from '../../types/Height';
+import type { Anchor } from '../../types/shapes/Anchor';
 import type { Width } from '../../types/Width';
 
 export class Shape implements BaseShape, Commitable {
@@ -40,6 +42,10 @@ export class Shape implements BaseShape, Commitable {
   protected FILL = 'white';
 
   protected STROKE?: string = undefined;
+
+  protected RENDER_ANCHOR: Anchor = 'TOP-LEFT';
+
+  protected ANCHOR: Anchor = 'TOP-LEFT';
 
   constructor({ x = 0, y = 0, type, fill }: CreationShape & ShapeAttributes) {
     this.X = x;
@@ -105,6 +111,27 @@ export class Shape implements BaseShape, Commitable {
     this.SCENE?._expectCommit();
   }
 
+  get actualBounds(): {
+    minX: number;
+    minY: number;
+    maxX: number;
+    maxY: number;
+    width: number;
+    height: number;
+  } {
+    const width = this.actualWidth;
+    const height = this.actualHeight;
+
+    const resolvedAnchor = resolveShortAnchor(this.anchor);
+
+    const minX = this.actualX - resolvedAnchor.x * width;
+    const minY = this.actualY - resolvedAnchor.y * height;
+    const maxX = minX + width;
+    const maxY = minY + height;
+
+    return { minX, minY, maxX, maxY, width, height };
+  }
+
   get actualWidth(): number {
     if (typeof this.width == 'number') {
       return this.width;
@@ -116,8 +143,7 @@ export class Shape implements BaseShape, Commitable {
     } else {
       return this.SCENE?.coordinateSpace == 'ADAPTIVE'
         ? this.width.multiplier + this.width.constant
-        : this.width.root.shape.renderer.calculatedSize.width *
-            this.width.multiplier +
+        : this.width.root.shape.referenceLength * this.width.multiplier +
             this.width.constant;
     }
   }
@@ -133,8 +159,7 @@ export class Shape implements BaseShape, Commitable {
     } else {
       return this.SCENE?.coordinateSpace == 'ADAPTIVE'
         ? this.height.multiplier + this.height.constant
-        : this.height.root.shape.renderer.calculatedSize.height *
-            this.height.multiplier +
+        : this.height.root.shape.referenceLength * this.height.multiplier +
             this.height.constant;
     }
   }
@@ -143,9 +168,9 @@ export class Shape implements BaseShape, Commitable {
     if (typeof this.X == 'number') {
       return this.X;
     } else if (this.X.root.shape instanceof Shape) {
+      const bounds = this.X.root.shape.actualBounds;
       return (
-        this.X.root.shape.actualX +
-        (this.X.type == 'TRAILING' ? this.X.root.shape.actualWidth : 0) +
+        (this.X.type == 'TRAILING' ? bounds.maxX : bounds.minX) +
         this.X.constant
       );
     } else {
@@ -157,14 +182,26 @@ export class Shape implements BaseShape, Commitable {
     if (typeof this.Y == 'number') {
       return this.Y;
     } else if (this.Y.root.shape instanceof Shape) {
+      const bounds = this.Y.root.shape.actualBounds;
       return (
-        this.Y.root.shape.actualY +
-        (this.Y.type == 'BOTTOM' ? this.Y.root.shape.actualHeight : 0) +
-        this.Y.constant
+        (this.Y.type == 'BOTTOM' ? bounds.maxY : bounds.minY) + this.Y.constant
       );
     } else {
       return 0 + this.Y.constant;
     }
+  }
+
+  get anchor() {
+    return this.ANCHOR;
+  }
+
+  set anchor(val: Anchor) {
+    this.ANCHOR = val;
+    this.SCENE?._expectCommit();
+  }
+
+  get _renderAnchor() {
+    return this.RENDER_ANCHOR;
   }
 
   /* CONSTRAINTS */

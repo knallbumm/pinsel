@@ -1,28 +1,40 @@
 import type { Circle, Rectangle, Shape } from '../../shapes';
 import type { Label } from '../../shapes/label';
+import type { SpecificResolvedShape } from '../../types';
 import { resolveCircle } from './resolving/resolveCircle';
 import { resolveLabel } from './resolving/resolveLabel';
 import { resolveRectangle } from './resolving/resolveRectangle';
+import { translate } from './translate';
 
 export const resolveShape = (shape: Shape) => {
   // TODO: Check if there is already an exisiting resolved version
-  // const shape =  {
-  //     width: shape.actualWidth,
-  //     height: shape.actualHeight,
-  //     x: shape.actualX,
-  //     y: shape.actualY,
-  //     fill: shape.fill,
-  //     type: shape.type,
-  // };
+
+  let resolvedShape: SpecificResolvedShape;
 
   switch (shape.type) {
     case 'CIRCLE':
-      return resolveCircle(shape as Circle);
-
+      resolvedShape = resolveCircle(shape as Circle);
+      break;
     case 'RECTANGLE':
-      return resolveRectangle(shape as Rectangle);
-
+      resolvedShape = resolveRectangle(shape as Rectangle);
+      break;
     case 'LABEL':
-      return resolveLabel(shape as Label);
+      resolvedShape = resolveLabel(shape as Label);
+      break;
   }
+
+  const width = shape.actualWidth;
+  const height = shape.actualHeight;
+
+  const { x: newX, y: newY } = translate(
+    shape._renderAnchor,
+    shape.anchor,
+    { x: resolvedShape.x, y: resolvedShape.y },
+    { width, height }
+  );
+
+  resolvedShape.x = newX;
+  resolvedShape.y = newY;
+
+  return resolvedShape;
 };
