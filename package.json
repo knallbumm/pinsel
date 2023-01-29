@@ -2,6 +2,7 @@
   "name": "pinsel-mono",
   "private": true,
   "version": "0.0.0",
+  "type": "module",
   "scripts": {
     "dev": "turbo dev",
     "build": "turbo build --filter=!@pinsel/demo --filter=!@pinsel/docs",
@@ -16,14 +17,27 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "rollup": "^3.9.1",
-    "turbo": "^1.6.3"
+    "rollup": "^3.12.0",
+    "rollup-plugin-dts": "^5.1.1",
+    "rollup-plugin-esbuild": "^5.0.0",
+    "turbo": "^1.7.0"
   },
   "dependencies": {
     "@changesets/cli": "^2.26.0",
+    "@pinsel/shared": "workspace:*",
     "@rollup/plugin-strip": "^3.0.2",
-    "@rollup/plugin-typescript": "^10.0.1",
+    "eslint": "^8.33.0",
+    "@typescript-eslint/eslint-plugin": "^5.49.0",
+    "@typescript-eslint/parser": "^5.49.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-simple-import-sort": "^10.0.0",
+    "prettier": "^2.8.3",
     "logt": "^1.4.5",
-    "typescript": "^4.9.3"
+    "@vitest/coverage-c8": "^0.28.3",
+    "rimraf": "^4.1.2",
+    "vitest": "^0.28.3",
+    "typescript": "^4.9.4"
   }
 }
