@@ -2,7 +2,7 @@ import type { Label } from '../../../shapes/label';
 import type { ResolvedLabel } from '../../../types/shapes/label';
 import { resolveFont } from './resolveFont';
 
-export const resolveLabel = (shape: Label): ResolvedLabel => {
+export const resolveLabel = (shape: Label): Omit<ResolvedLabel, 'rotation'> => {
   return {
     type: 'LABEL',
     x: shape.actualX,

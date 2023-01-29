@@ -10,7 +10,7 @@ import { translate } from './translate';
 export const resolveShape = (shape: Shape) => {
   // TODO: Check if there is already an exisiting resolved version
 
-  let resolvedShape: SpecificResolvedShape;
+  let resolvedShape: Partial<SpecificResolvedShape>;
 
   switch (shape.type) {
     case 'CIRCLE':
@@ -30,7 +30,7 @@ export const resolveShape = (shape: Shape) => {
   const { x: newX, y: newY } = translate(
     shape._renderAnchor,
     shape.anchor,
-    { x: resolvedShape.x, y: resolvedShape.y },
+    { x: resolvedShape.x ?? 0, y: resolvedShape.y ?? 0 },
     { width, height }
   );
 
@@ -39,5 +39,5 @@ export const resolveShape = (shape: Shape) => {
 
   resolvedShape.rotation = resolveRotation(shape);
 
-  return resolvedShape;
+  return resolvedShape as SpecificResolvedShape;
 };

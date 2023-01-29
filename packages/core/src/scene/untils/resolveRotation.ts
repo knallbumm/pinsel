@@ -2,7 +2,6 @@ import { resolveHorizontalPositionConstraint } from '../../helper/resolveHorizon
 import { resolveVerticalPositionConstraint } from '../../helper/resolveVerticalPositionConstraint';
 import type { Shape } from '../../shapes';
 import type { ResolvedRotation } from '../../types/ResolvedRotation';
-import type { HorizontalPositionConstraint } from '../constraints';
 import { resolveShortAnchor } from './resolveShortAnchor';
 
 export const resolveRotation = (shape: Shape): ResolvedRotation => {
