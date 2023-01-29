@@ -1,5 +1,14 @@
 # pinsel
 
+## 0.0.9
+
+### Patch Changes
+
+- b3abcd5: Improving build process and package.jsons
+- Updated dependencies [b3abcd5]
+  - @pinsel/core@0.0.9
+  - @pinsel/renderer@0.0.9
+
 ## 0.0.8
 
 ### Patch Changes
