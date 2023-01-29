@@ -1,5 +1,14 @@
 # pinsel
 
+## 0.0.8
+
+### Patch Changes
+
+- 6761d01: Adding option to rotate shapes
+- Updated dependencies [6761d01]
+  - @pinsel/core@0.0.8
+  - @pinsel/renderer@0.0.8
+
 ## 0.0.7
 
 ### Patch Changes
