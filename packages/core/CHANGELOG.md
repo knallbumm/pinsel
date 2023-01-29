@@ -1,5 +1,11 @@
 # @pinsel/core
 
+## 0.0.9
+
+### Patch Changes
+
+- b3abcd5: Improving build process and package.jsons
+
 ## 0.0.8
 
 ### Patch Changes
