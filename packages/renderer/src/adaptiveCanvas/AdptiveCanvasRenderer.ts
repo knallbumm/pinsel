@@ -11,8 +11,6 @@ import type { AdptiveCanvasRendererOptions } from './types/AdptiveCanvasRenderer
 export class AdptiveCanvasRenderer extends Renderer {
   lastFrameId: number | undefined = undefined;
 
-  onFrameRenderDone: (() => void)[] = [];
-
   constructor(options: Partial<AdptiveCanvasRendererOptions>) {
     super({ size: options.size ?? 'MAX', container: options.container });
     this.domElement = document.createElement('canvas');
@@ -52,8 +50,6 @@ export class AdptiveCanvasRenderer extends Renderer {
 
     const end = performance.now();
     Logger.info('STATS', `Render-Duration: ${end - start}`);
-
-    this.onFrameRenderDone.forEach((e) => e());
   }
 
   resize(size: Size): void {
@@ -81,19 +77,13 @@ export class AdptiveCanvasRenderer extends Renderer {
     };
   }
 
-  async getImage(type: 'JPG' | 'PNG' = 'JPG'): Promise<string> {
-    const callbackArray = this.onFrameRenderDone;
+  /**
+   *
+   * @param type e.g. "image/png", "image/jpeg", ...
+   */
+  async getImage(type: string): Promise<string> {
     const canvas = this.domElement as HTMLCanvasElement;
-    if (this.EXPECTS_RENDER) {
-      return new Promise(function (resolve) {
-        callbackArray.push(() => {
-          resolve(canvas.toDataURL());
-        });
-      });
-    } else {
-      return new Promise(function (resolve) {
-        resolve(canvas.toDataURL(type === 'PNG' ? 'image/png' : 'image/jpeg'));
-      });
-    }
+    await this.nextTick();
+    return canvas.toDataURL(type);
   }
 }

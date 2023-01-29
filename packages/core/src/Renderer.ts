@@ -2,16 +2,29 @@ import type { Scene } from './scene/Scene';
 import type { RendererOptions } from './types/renderer/RendererOptions';
 import type { Size } from './types/Size';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type VariadictCallback = (...args: any[]) => void;
+
 export abstract class Renderer {
   container?: HTMLElement | null;
   domElement?: HTMLElement | null = undefined;
 
   calculatedSize: Size = { width: 222, height: 222 };
+  private onFrameRenderDone: (() => void)[] = [];
 
   protected EXPECTS_RENDER = false;
 
   constructor({ container, size = 'MAX' }: RendererOptions = { size: 'MAX' }) {
     this.container = container;
+
+    // makes given function call flushOnRenderDone()
+    const flushDecorator = (func: VariadictCallback) => {
+      return (...args: []) => {
+        func.call(this, ...args);
+        this.flushOnRenderDone();
+      };
+    };
+    this.renderNewFrame = flushDecorator(this.renderNewFrame);
 
     if (size == 'MAX') {
       this.listenOnResize();
@@ -74,7 +87,35 @@ export abstract class Renderer {
     });
   }
 
-  _expectRender() {
-    this.EXPECTS_RENDER = true;
+  protected async nextTick(): Promise<void>;
+  protected nextTick(callback: () => void): void;
+  protected async nextTick(callback?: () => void) {
+    let _resolve: VariadictCallback | undefined;
+    let promise: Promise<unknown> | undefined;
+
+    if (!callback) {
+      promise = new Promise((resolve) => {
+        _resolve = resolve;
+      });
+    }
+
+    const onFramerenderDone = () => {
+      callback?.();
+      _resolve?.();
+    };
+
+    if (!this.EXPECTS_RENDER) {
+      onFramerenderDone();
+    } else this.onFrameRenderDone.push(onFramerenderDone);
+
+    return promise;
+  }
+
+  private flushOnRenderDone() {
+    this.onFrameRenderDone.forEach((e) => e());
+  }
+
+  _expectRender(value = true) {
+    this.EXPECTS_RENDER = value;
   }
 }

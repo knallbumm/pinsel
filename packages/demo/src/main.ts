@@ -77,16 +77,21 @@ p.scene.add(
 
 p.commit();
 
-document.addEventListener('click', () => {
+document.addEventListener('click', (event) => {
   p.scene.updateBatch(() => {
     rect.x = Math.random();
     rect.y = Math.random();
     rect.fill = 'red';
   });
+  if (event.ctrlKey) renderCanvas();
+});
+
+document.addEventListener('keydown', (event) => {
+  if (event.ctrlKey && event.shiftKey && event.key == 'c') renderCanvas();
 });
 
 const renderCanvas = async () => {
-  const image = await renderer.getImage('PNG');
+  const image = await renderer.getImage('image/png');
   downloadImage(image);
 };
 
