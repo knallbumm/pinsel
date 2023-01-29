@@ -1,6 +1,5 @@
 import type { Scene } from '@pinsel/core';
-import { Renderer } from '@pinsel/core';
-import Logger from '@pinsel/core/src/helper/Logger';
+import { Logger, Renderer } from '@pinsel/core';
 import type { Size } from '@pinsel/core/src/types/Size';
 
 import { rotateCanvasAroundPoint } from '../helpers/canvas/rotateCanvasAroundPoint';

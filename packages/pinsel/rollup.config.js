@@ -1,1 +1,1 @@
-export { default } from '@pinsel/shared/rollup.config.js';
+export { default } from '@pinsel/shared/rollup.config.cjs';
