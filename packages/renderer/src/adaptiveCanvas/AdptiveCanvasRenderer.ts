@@ -1,5 +1,5 @@
 import type { Scene } from '@pinsel/core';
-import { Logger, Renderer } from '@pinsel/core';
+import { Renderer } from '@pinsel/core';
 import type { Size } from '@pinsel/core/src/types/Size';
 
 import { rotateCanvasAroundPoint } from '../helpers/canvas/rotateCanvasAroundPoint';
@@ -52,7 +52,7 @@ export class AdptiveCanvasRenderer extends Renderer {
     }
 
     const end = performance.now();
-    Logger.info('STATS', `Render-Duration: ${end - start}`);
+    console.log(`Render-Duration: ${end - start}`);
   }
 
   resize(size: Size): void {

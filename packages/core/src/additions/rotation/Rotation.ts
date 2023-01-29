@@ -1,4 +1,5 @@
 import { GroupedAttributes } from '../../GroupedAttributes';
+import Logger from '../../helper/Logger';
 import type { RotationOptions } from '../../types/RotationOptions';
 import type { RotationPoint } from '../../types/RotationPoint';
 import type { RotationUnit } from '../../types/RotationUnit';
@@ -41,5 +42,25 @@ export class Rotation extends GroupedAttributes {
   set point(point: typeof this.POINT) {
     this.POINT = point;
     this.ASSOCIATION?.commit(this);
+  }
+
+  switchToDeg() {
+    if (this.UNIT == 'DEG') {
+      Logger.warn('CORE', 'You are already using degrees');
+      return;
+    }
+
+    this.ANGLE = this.ANGLE * (180 / Math.PI);
+    this.UNIT = 'DEG';
+  }
+
+  switchToRad() {
+    if (this.UNIT == 'RAD') {
+      Logger.warn('CORE', 'You are already using radians');
+      return;
+    }
+
+    this.ANGLE = (this.ANGLE * Math.PI) / 180;
+    this.UNIT = 'RAD';
   }
 }
