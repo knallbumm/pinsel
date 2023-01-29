@@ -1,10 +1,5 @@
-import type {
-  HorizontalPositionConstraint,
-  VerticalPositionConstraint,
-} from '../../../scene/constraints';
+import type { RelativePoint } from '../../RelativePoint';
 
-export interface CreationShape {
-  x: number | HorizontalPositionConstraint;
-  y: number | VerticalPositionConstraint;
+export interface CreationShape extends RelativePoint {
   fill?: string;
 }

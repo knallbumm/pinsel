@@ -1,4 +1,4 @@
-import type { Position } from './Position';
+import type { Point } from './Point';
 import type { Size } from './Size';
 
-export type Bounds = Size & Position;
+export type Bounds = Size & Point;

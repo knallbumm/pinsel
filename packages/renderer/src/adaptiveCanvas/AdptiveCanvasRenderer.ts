@@ -3,6 +3,7 @@ import { Renderer } from '@pinsel/core';
 import Logger from '@pinsel/core/src/helper/Logger';
 import type { Size } from '@pinsel/core/src/types/Size';
 
+import { rotateCanvasAroundPoint } from '../helpers/canvas/rotateCanvasAroundPoint';
 import { renderCircle } from '../helpers/canvas/shapes/circle/renderCircle';
 import { renderLabel } from '../helpers/canvas/shapes/label/renderLabel';
 import { renderRectangle } from '../helpers/canvas/shapes/rectangle/renderRectangle';
@@ -38,6 +39,8 @@ export class AdptiveCanvasRenderer extends Renderer {
     }
 
     for (const shape of frameUpdate.objects) {
+      context.save();
+      rotateCanvasAroundPoint(context, shape.rotation);
       switch (shape.type) {
         case 'RECTANGLE':
           renderRectangle(context, shape);
@@ -48,6 +51,7 @@ export class AdptiveCanvasRenderer extends Renderer {
         case 'LABEL':
           renderLabel(context, shape);
       }
+      context.restore();
     }
 
     const end = performance.now();

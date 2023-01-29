@@ -15,6 +15,13 @@ export const transformToRealCoordiantes = (
             radius: shape.radius * relativeLength,
             x: shape.x * relativeLength,
             y: shape.y * relativeLength,
+            rotation: {
+              ...shape.rotation,
+              point: {
+                x: shape.rotation.point.x * relativeLength,
+                y: shape.rotation.point.y * relativeLength,
+              },
+            },
           };
 
         case 'RECTANGLE':
@@ -24,6 +31,13 @@ export const transformToRealCoordiantes = (
             height: shape.height * relativeLength,
             x: shape.x * relativeLength,
             y: shape.y * relativeLength,
+            rotation: {
+              ...shape.rotation,
+              point: {
+                x: shape.rotation.point.x * relativeLength,
+                y: shape.rotation.point.y * relativeLength,
+              },
+            },
           };
 
         case 'LABEL':
@@ -31,6 +45,13 @@ export const transformToRealCoordiantes = (
             ...shape,
             x: shape.x * relativeLength,
             y: shape.y * relativeLength,
+            rotation: {
+              ...shape.rotation,
+              point: {
+                x: shape.rotation.point.x * relativeLength,
+                y: shape.rotation.point.y * relativeLength,
+              },
+            },
           };
       }
     });

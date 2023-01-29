@@ -8,6 +8,7 @@ import {
   label,
   Pinsel,
   rectangle,
+  rotation,
   Runner,
 } from 'pinsel';
 
@@ -54,6 +55,25 @@ const positionRect = rectangle({
   fill: 'green',
 });
 p.scene.add(positionRect);
+
+const NUM = 30;
+
+for (let i = 0; i < NUM; i++) {
+  const dot = circle({
+    x: 0.4,
+    y: 0.4,
+    radius: 0.005,
+    fill: 'green',
+  });
+  p.scene.add(dot);
+  dot.rotation = rotation({
+    deg: i * (360 / NUM),
+    point: {
+      x: positionRect.trailingConstraint(),
+      y: positionRect.bottomConstraint(),
+    },
+  });
+}
 
 const text = label({
   text: 'PINSEL is the best!',

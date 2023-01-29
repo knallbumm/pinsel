@@ -1,6 +1,7 @@
 import type { Circle, Rectangle, Shape } from '../../shapes';
 import type { Label } from '../../shapes/label';
 import type { SpecificResolvedShape } from '../../types';
+import { resolveRotation } from './resolveRotation';
 import { resolveCircle } from './resolving/resolveCircle';
 import { resolveLabel } from './resolving/resolveLabel';
 import { resolveRectangle } from './resolving/resolveRectangle';
@@ -35,6 +36,8 @@ export const resolveShape = (shape: Shape) => {
 
   resolvedShape.x = newX;
   resolvedShape.y = newY;
+
+  resolvedShape.rotation = resolveRotation(shape);
 
   return resolvedShape;
 };

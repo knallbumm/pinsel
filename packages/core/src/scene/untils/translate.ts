@@ -1,14 +1,14 @@
 import type { Anchor } from '../../types';
-import type { Position } from '../../types/Position';
+import type { Point } from '../../types/Point';
 import type { Size } from '../../types/Size';
 import { resolveShortAnchor } from './resolveShortAnchor';
 
 export const translate = (
   renderAnchor: Anchor,
   translatedAnchor: Anchor,
-  position: Position,
+  position: Point,
   size: Size
-): Position => {
+): Point => {
   const resRenderAnchor = resolveShortAnchor(renderAnchor);
   const resTranslatedAnchor = resolveShortAnchor(translatedAnchor);
 

@@ -1,8 +1,12 @@
 import { v4 as uuid } from 'uuid';
 
+import type { Rotation } from '../../additions';
+import { rotation } from '../../additions';
 import type { Commitable } from '../../Commitable';
 import type { GroupedAttributes } from '../../GroupedAttributes';
 import Logger from '../../helper/Logger';
+import { resolveHorizontalPositionConstraint } from '../../helper/resolveHorizontalPositionConstraint';
+import { resolveVerticalPositionConstraint } from '../../helper/resolveVerticalPositionConstraint';
 import {
   HorizontalPositionConstraint,
   HorizontalSizeConstraint,
@@ -47,12 +51,16 @@ export class Shape implements BaseShape, Commitable {
 
   protected ANCHOR: Anchor = 'TOP-LEFT';
 
+  protected ROTATION: Rotation;
+
   constructor({ x = 0, y = 0, type, fill }: CreationShape & ShapeAttributes) {
     this.X = x;
     this.Y = y;
 
     this.type = type;
     this.FILL = fill ?? 'white';
+
+    this.ROTATION = rotation({ deg: 0, point: 'ANCHOR' });
   }
 
   commit(attributes: GroupedAttributes): void {
@@ -111,6 +119,15 @@ export class Shape implements BaseShape, Commitable {
     this.SCENE?._expectCommit();
   }
 
+  get rotation() {
+    return this.ROTATION;
+  }
+
+  set rotation(val: typeof this.ROTATION) {
+    this.ROTATION = val;
+    this.SCENE?._expectCommit();
+  }
+
   get actualBounds(): {
     minX: number;
     minY: number;
@@ -165,30 +182,11 @@ export class Shape implements BaseShape, Commitable {
   }
 
   get actualX(): number {
-    if (typeof this.X == 'number') {
-      return this.X;
-    } else if (this.X.root.shape instanceof Shape) {
-      const bounds = this.X.root.shape.actualBounds;
-      return (
-        (this.X.type == 'TRAILING' ? bounds.maxX : bounds.minX) +
-        this.X.constant
-      );
-    } else {
-      return 0 + this.X.constant;
-    }
+    return resolveHorizontalPositionConstraint(this.X);
   }
 
   get actualY(): number {
-    if (typeof this.Y == 'number') {
-      return this.Y;
-    } else if (this.Y.root.shape instanceof Shape) {
-      const bounds = this.Y.root.shape.actualBounds;
-      return (
-        (this.Y.type == 'BOTTOM' ? bounds.maxY : bounds.minY) + this.Y.constant
-      );
-    } else {
-      return 0 + this.Y.constant;
-    }
+    return resolveVerticalPositionConstraint(this.Y);
   }
 
   get anchor() {
