@@ -1,5 +1,11 @@
 # @pinsel/core
 
+## 0.0.10
+
+### Patch Changes
+
+- dec82c5: adds iife build
+
 ## 0.0.9
 
 ### Patch Changes

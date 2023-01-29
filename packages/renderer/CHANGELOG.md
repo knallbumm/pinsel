@@ -1,5 +1,13 @@
 # @pinsel/renderer
 
+## 0.0.10
+
+### Patch Changes
+
+- dec82c5: adds iife build
+- Updated dependencies [dec82c5]
+  - @pinsel/core@0.0.10
+
 ## 0.0.9
 
 ### Patch Changes
