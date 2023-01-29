@@ -27,8 +27,7 @@
     "coverage": "vitest run --coverage"
   },
   "dependencies": {
-    "@pinsel/core": "workspace:*",
-    "typescript": "^4.9.3"
+    "@pinsel/core": "workspace:*"
   },
   "devDependencies": {
     "@rollup/plugin-typescript": "^10.0.1",
@@ -42,6 +41,7 @@
     "eslint-plugin-simple-import-sort": "^8.0.0",
     "prettier": "^2.8.1",
     "rimraf": "^3.0.2",
+    "typescript": "^4.9.3",
     "vitest": "^0.26.3"
   }
 }
