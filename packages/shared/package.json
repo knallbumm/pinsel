@@ -1,0 +1,8 @@
+{
+  "name": "@pinsel/shared",
+  "private": true,
+  "type": "module",
+  "files": [
+    "*"
+  ]
+}
