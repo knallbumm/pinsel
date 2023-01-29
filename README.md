@@ -38,6 +38,16 @@ npm i pinsel
 
 _There is also the possibility to use only parts of Pinsel or to write extensions yourself. If you want to know more about this, have a look at the detailed documentation: `@pinsel/core` & `@pinsel/renderer`_
 
+### CDN
+
+```html
+<script src="https://unpkg.com/@pinsel/core"></script>
+<script src="https://unpkg.com/@pinsel/runner"></script>
+<script src="https://unpkg.com/pinsel"></script>
+```
+
+This exposes Pinsel globally  via `window.Pinsel`
+
 ## Simple Usage
 
 ```typescript
