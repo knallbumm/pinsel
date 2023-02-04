@@ -9,7 +9,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "pinsel": "workspace:*"
   },
   "devDependencies": {
     "vite": "^4.0.0"
