@@ -1,5 +1,6 @@
 import Logger from './helper/Logger';
-import { Runner } from './Runner';
+import type { Runner } from './Runner';
+import { AdaptiveRunner } from './runner/AdaptiveRunner';
 import { Scene } from './scene/Scene';
 import type { PinselOptions } from './types';
 import type { CoordinateSpace } from './types/CoordinateSpace';
@@ -9,13 +10,21 @@ export class Pinsel {
   readonly coordinateSpace: CoordinateSpace;
   runner?: Runner;
 
-  constructor(options: PinselOptions) {
+  constructor({
+    renderer,
+    coordinateSpace,
+    renderBehavior = 'ADAPTIVE',
+  }: PinselOptions) {
     this.scene = new Scene(this, {
-      renderer: options.renderer,
-      coordinateSpace: options.coordinateSpace ?? 'FIXED',
+      renderer: renderer,
+      coordinateSpace: coordinateSpace ?? 'FIXED',
     });
-    this.coordinateSpace = options.coordinateSpace ?? 'ADAPTIVE';
-    this.runner = options.runner ?? new Runner();
+    this.coordinateSpace = coordinateSpace ?? 'ADAPTIVE';
+    // TODO: Use correct render when renderBehavior is recurring
+    this.runner =
+      renderBehavior == 'RECURRING'
+        ? new AdaptiveRunner()
+        : new AdaptiveRunner();
   }
 
   commit() {

@@ -1,5 +1,5 @@
 import type { RendererOptions } from '@pinsel/core';
 
-export interface AdptiveCanvasRendererOptions extends RendererOptions {
+export interface CanvasRendererOptions extends RendererOptions {
   domElementType: 'IMG' | 'CANVAS';
 }

@@ -6,10 +6,10 @@ import { rotateCanvasAroundPoint } from '../helpers/canvas/rotateCanvasAroundPoi
 import { renderCircle } from '../helpers/canvas/shapes/circle/renderCircle';
 import { renderLabel } from '../helpers/canvas/shapes/label/renderLabel';
 import { renderRectangle } from '../helpers/canvas/shapes/rectangle/renderRectangle';
-import type { AdptiveCanvasRendererOptions } from './types/AdptiveCanvasRendererOptions';
+import type { CanvasRendererOptions } from './types/CanvasRendererOptions';
 
-export class AdptiveCanvasRenderer extends Renderer {
-  constructor(options: Partial<AdptiveCanvasRendererOptions>) {
+export class CanvasRenderer extends Renderer {
+  constructor(options: Partial<CanvasRendererOptions>) {
     super({ size: options.size ?? 'MAX', container: options.container });
     this.domElement = document.createElement('canvas');
     super.appendToContainer();

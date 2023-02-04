@@ -1,7 +1,7 @@
 import './style.css';
 
 import {
-  AdptiveCanvasRenderer,
+  CanvasRenderer,
   circle,
   downloadImage,
   font,
@@ -9,16 +9,14 @@ import {
   Pinsel,
   rectangle,
   rotation,
-  Runner,
 } from 'pinsel';
 
 const container = document.getElementById('app');
-const renderer = new AdptiveCanvasRenderer({ container, size: 'MAX' });
+const renderer = new CanvasRenderer({ container, size: 'MAX' });
 
 const p = new Pinsel({
   coordinateSpace: 'ADAPTIVE',
   renderer,
-  runner: new Runner(),
 });
 
 const rect = rectangle({ width: 0.5, height: 0.3, x: 0.1, y: 0 });
