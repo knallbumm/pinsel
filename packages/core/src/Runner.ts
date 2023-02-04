@@ -7,6 +7,11 @@ export abstract class Runner {
     this.pinsel = pinsel;
   }
 
-  abstract render(): void;
   abstract scheduleRender(): void;
+
+  protected triggerFrameRender() {
+    this.pinsel.scene.renderer._expectRender(true);
+    this.pinsel.scene.renderer.renderNewFrame();
+    this.pinsel.scene.renderer._expectRender(false);
+  }
 }
