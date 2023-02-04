@@ -22,7 +22,8 @@ const p = new Pinsel({
 });
 
 const rect = rectangle({ width: 0.5, height: 0.3, x: 0.1, y: 0 });
-rect.stroke = '#FB39FF';
+rect.stroke.color = '#FB39FF';
+rect.stroke.width = 15;
 p.scene.add(rect);
 
 p.scene.fill = 'white';
@@ -42,7 +43,8 @@ const circ = circle({
   x: 0.5,
   y: 0.2,
 });
-circ.stroke = 'black';
+circ.stroke.color = 'black';
+circ.stroke.width = 30;
 circ.fill = '#FFC02D';
 circ.anchor = 'CENTER';
 p.scene.add(circ);

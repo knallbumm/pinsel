@@ -9,8 +9,6 @@ import { renderRectangle } from '../helpers/canvas/shapes/rectangle/renderRectan
 import type { AdptiveCanvasRendererOptions } from './types/AdptiveCanvasRendererOptions';
 
 export class AdptiveCanvasRenderer extends Renderer {
-  lastFrameId: number | undefined = undefined;
-
   constructor(options: Partial<AdptiveCanvasRendererOptions>) {
     super({ size: options.size ?? 'MAX', container: options.container });
     this.domElement = document.createElement('canvas');

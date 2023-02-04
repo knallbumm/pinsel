@@ -1,4 +1,7 @@
-import type { FillShape } from './FillShape';
+import type { ResolvedStroke } from '../../ResolvedStroke';
 import type { ResolvedShape } from './ResolvedShape';
 
-export interface ResolvedFillShape extends ResolvedShape, FillShape {}
+export interface ResolvedFillShape extends ResolvedShape {
+  fill?: string;
+  stroke?: ResolvedStroke;
+}

@@ -1,5 +1,6 @@
 import type { Rectangle } from '../../../shapes';
 import type { ResolvedRectangle } from '../../../types';
+import { resolveStroke } from '../resolveStroke';
 
 export const resolveRectangle = (
   shape: Rectangle
@@ -9,7 +10,7 @@ export const resolveRectangle = (
     x: shape.actualX,
     y: shape.actualY,
     fill: shape.fill,
-    stroke: shape.stroke,
+    stroke: resolveStroke(shape),
     width: shape.actualWidth,
     height: shape.actualHeight,
   };

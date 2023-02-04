@@ -2,6 +2,8 @@ import { v4 as uuid } from 'uuid';
 
 import type { Rotation } from '../../additions';
 import { rotation } from '../../additions';
+import type { Stroke } from '../../additions/stroke';
+import { stroke } from '../../additions/stroke';
 import type { Commitable } from '../../Commitable';
 import type { GroupedAttributes } from '../../GroupedAttributes';
 import Logger from '../../helper/Logger';
@@ -45,7 +47,7 @@ export class Shape implements BaseShape, Commitable {
   /** Fill of the shape */
   protected FILL = 'white';
 
-  protected STROKE?: string = undefined;
+  protected STROKE: Stroke;
 
   protected RENDER_ANCHOR: Anchor = 'TOP-LEFT';
 
@@ -61,6 +63,7 @@ export class Shape implements BaseShape, Commitable {
     this.FILL = fill ?? 'white';
 
     this.ROTATION = rotation({ deg: 0, point: 'ANCHOR' });
+    this.STROKE = stroke({});
   }
 
   commit(attributes: GroupedAttributes): void {

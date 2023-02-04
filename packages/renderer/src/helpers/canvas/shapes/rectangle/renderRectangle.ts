@@ -12,8 +12,8 @@ export const renderRectangle = (
   }
 
   if (shape.stroke) {
-    context.strokeStyle = shape.stroke;
-    context.lineWidth = 15;
+    context.strokeStyle = shape.stroke.color;
+    context.lineWidth = shape.stroke.width;
     context.stroke();
   }
 };

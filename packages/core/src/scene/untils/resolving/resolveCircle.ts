@@ -1,5 +1,6 @@
 import type { Circle } from '../../../shapes';
 import type { ResolvedCircle } from '../../../types/shapes/circle';
+import { resolveStroke } from '../resolveStroke';
 
 export const resolveCircle = (
   shape: Circle
@@ -9,7 +10,7 @@ export const resolveCircle = (
     x: shape.actualX,
     y: shape.actualY,
     fill: shape.fill,
-    stroke: shape.stroke,
+    stroke: resolveStroke(shape),
     radius: shape.radius,
   };
 };
