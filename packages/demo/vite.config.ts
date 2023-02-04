@@ -1,9 +1,7 @@
-import Vue from '@vitejs/plugin-vue';
 import { resolve } from 'path';
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-  plugins: [Vue()],
   resolve: {
     alias: {
       // skip /dist resolution for hmr
