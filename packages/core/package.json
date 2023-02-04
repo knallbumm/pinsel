@@ -21,6 +21,7 @@
   "unpkg": "./dist/index.iife.min.js",
   "jsdelivr": "./dist/index.iife.min.js",
   "types": "./dist/index.d.ts",
+  "sideEffects": false,
   "scripts": {
     "build": "rimraf dist/ && rollup --c",
     "lint": "eslint . --ext .ts",
