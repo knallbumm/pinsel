@@ -1,5 +1,14 @@
 # pinsel
 
+## 0.0.12
+
+### Patch Changes
+
+- 2613bdd: marks packages as sideEffect free
+- Updated dependencies [2613bdd]
+  - @pinsel/renderer@0.0.12
+  - @pinsel/core@0.0.12
+
 ## 0.0.11
 
 ### Patch Changes
