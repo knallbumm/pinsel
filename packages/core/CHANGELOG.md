@@ -1,5 +1,11 @@
 # @pinsel/core
 
+## 0.0.11
+
+### Patch Changes
+
+- 35e7222: adding stroke width
+
 ## 0.0.10
 
 ### Patch Changes

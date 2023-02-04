@@ -1,5 +1,13 @@
 # @pinsel/renderer
 
+## 0.0.11
+
+### Patch Changes
+
+- 35e7222: adding stroke width
+- Updated dependencies [35e7222]
+  - @pinsel/core@0.0.11
+
 ## 0.0.10
 
 ### Patch Changes
