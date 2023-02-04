@@ -1,7 +1,7 @@
 {
   "name": "@pinsel/core",
   "description": "The core of pinsel",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "type": "module",
   "files": [
     "dist"
