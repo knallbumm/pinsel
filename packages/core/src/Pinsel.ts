@@ -23,13 +23,13 @@ export class Pinsel {
     // TODO: Use correct render when renderBehavior is recurring
     this.runner =
       renderBehavior == 'RECURRING'
-        ? new AdaptiveRunner()
-        : new AdaptiveRunner();
+        ? new AdaptiveRunner(this)
+        : new AdaptiveRunner(this);
   }
 
   commit() {
     Logger.info('CORE', 'Change commited');
     this.scene.updateAll();
-    this.runner?.render(this.scene);
+    this.runner?.render();
   }
 }

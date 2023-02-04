@@ -6,6 +6,7 @@ import type { Size } from './types/Size';
 type VariadictCallback = (...args: any[]) => void;
 
 export abstract class Renderer {
+  scene?: Scene;
   container?: HTMLElement | null;
   domElement?: HTMLElement | null = undefined;
 
@@ -44,9 +45,8 @@ export abstract class Renderer {
 
   /**
    * Renders the current state of the given Scene
-   * @param scene The Scene to render
    */
-  abstract renderNewFrame(scene: Scene): void;
+  abstract renderNewFrame(): void;
 
   /**
    * Handles the resize event
@@ -84,6 +84,7 @@ export abstract class Renderer {
       };
 
       this.resize(this.calculatedSize);
+      this.scene?.pinsel.runner?.scheduleRender();
     });
   }
 

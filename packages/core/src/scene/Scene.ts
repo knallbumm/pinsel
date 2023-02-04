@@ -33,6 +33,8 @@ export class Scene {
     this.renderer = options.renderer;
     this.coordinateSpace = options.coordinateSpace;
     this.pinsel = pinsel;
+
+    options.renderer.scene = this;
   }
 
   private shapes: Shape[] = [];

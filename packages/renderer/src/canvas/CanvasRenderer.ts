@@ -1,4 +1,3 @@
-import type { Scene } from '@pinsel/core';
 import { Renderer } from '@pinsel/core';
 import type { Size } from '@pinsel/core/src/types/Size';
 
@@ -15,10 +14,14 @@ export class CanvasRenderer extends Renderer {
     super.appendToContainer();
   }
 
-  renderNewFrame(scene: Scene) {
+  renderNewFrame() {
+    if (!this.scene) {
+      throw Error('Triing to render without scene');
+    }
+
     const start = performance.now();
     const pixelSize = this.convertToPixelRatio(this.calculatedSize);
-    const frameUpdate = scene.getFrameUpdate(pixelSize);
+    const frameUpdate = this.scene.getFrameUpdate(pixelSize);
 
     const context = (this.domElement as HTMLCanvasElement).getContext('2d');
     if (!context) {

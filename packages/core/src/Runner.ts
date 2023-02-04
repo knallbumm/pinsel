@@ -1,5 +1,12 @@
-import type { Scene } from './scene/Scene';
+import type { Pinsel } from './Pinsel';
 
 export abstract class Runner {
-  abstract render(scene: Scene): void;
+  pinsel: Pinsel;
+
+  constructor(pinsel: Pinsel) {
+    this.pinsel = pinsel;
+  }
+
+  abstract render(): void;
+  abstract scheduleRender(): void;
 }

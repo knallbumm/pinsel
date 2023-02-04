@@ -89,8 +89,8 @@ p.scene.add(
   rectangle({
     x: text.trailingConstraint(),
     y: text.topConstraint(),
-    width: 20,
-    height: 200,
+    width: 0.3,
+    height: 2,
     fill: 'yellow',
   })
 );
