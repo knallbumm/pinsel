@@ -1,5 +1,14 @@
 # pinsel
 
+## 0.0.14
+
+### Patch Changes
+
+- 6032767: Adding continuous runner
+- Updated dependencies [6032767]
+  - @pinsel/core@0.0.14
+  - @pinsel/renderer@0.0.14
+
 ## 0.0.13
 
 ### Patch Changes

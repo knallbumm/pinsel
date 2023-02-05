@@ -1,5 +1,12 @@
 # @pinsel/renderer
 
+## 0.0.14
+
+### Patch Changes
+
+- Updated dependencies [6032767]
+  - @pinsel/core@0.0.14
+
 ## 0.0.13
 
 ### Patch Changes
