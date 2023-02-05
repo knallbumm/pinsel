@@ -1,8 +1,13 @@
 import Logger from '../helper/Logger';
-import { Runner } from '../Runner';
+import type { ContinuousDraw } from '../types/runner/ContinuousDraw';
+import { Runner } from './Runner';
 
 export class ContinuousRunner extends Runner {
-  IS_RUNNING = false;
+  private IS_RUNNING = false;
+
+  private FRAME_COUNT = 0;
+
+  draw?: ContinuousDraw;
 
   public start() {
     if (this.IS_RUNNING) {
@@ -14,7 +19,7 @@ export class ContinuousRunner extends Runner {
     this.requestAnimationFrame();
   }
 
-  public stop() {
+  public pause() {
     if (!this.IS_RUNNING) {
       Logger.warn('RUNNER', 'Runner was already stopped');
       return;
@@ -23,13 +28,25 @@ export class ContinuousRunner extends Runner {
     this.IS_RUNNING = false;
   }
 
+  public stop() {
+    if (!this.IS_RUNNING) {
+      Logger.warn('RUNNER', 'Runner was already stopped');
+      return;
+    }
+
+    this.IS_RUNNING = false;
+    this.FRAME_COUNT = 0;
+  }
+
   private requestAnimationFrame() {
     if (!this.IS_RUNNING) {
       return;
     }
 
-    console.log('New frame und so');
     window.requestAnimationFrame(() => {
+      this.FRAME_COUNT += 1;
+
+      this.draw?.({ frameCount: this.FRAME_COUNT });
       this.triggerFrameRender();
       this.requestAnimationFrame();
     });

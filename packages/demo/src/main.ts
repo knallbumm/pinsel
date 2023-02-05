@@ -3,6 +3,7 @@ import './style.css';
 import {
   CanvasRenderer,
   circle,
+  ContinuousRunner,
   downloadImage,
   font,
   label,
@@ -14,10 +15,13 @@ import {
 const container = document.getElementById('app');
 const renderer = new CanvasRenderer({ container, size: 'MAX' });
 
+const runner = new ContinuousRunner();
+
 const p = new Pinsel({
   coordinateSpace: 'ADAPTIVE',
   renderer,
-  renderBehavior: 'CONTINUOUS',
+  renderBehavior: 'CONTINUOUS' as const,
+  runner,
 });
 
 const rect = rectangle({ width: 0.5, height: 0.3, x: 0.1, y: 0 });
@@ -117,3 +121,8 @@ const renderCanvas = async () => {
 };
 
 // void renderCanvas();
+
+runner.draw = ({ frameCount }) => {
+  console.log('Something to draw', frameCount);
+};
+runner.start();

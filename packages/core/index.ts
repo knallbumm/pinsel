@@ -7,5 +7,6 @@ export { Logger, Pinsel, Renderer, Scene };
 
 export * from './src/additions';
 export * from './src/functions';
+export * from './src/runner';
 export * from './src/shapes';
 export * from './src/types';
