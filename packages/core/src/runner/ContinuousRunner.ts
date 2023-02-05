@@ -7,6 +7,10 @@ export class ContinuousRunner extends Runner {
 
   private FRAME_COUNT = 0;
 
+  /**
+   * Function called for every frame (before it is rendered). You can use it to update shapes or the scene itself.
+   * As an argument you get the current frame number.
+   */
   draw?: ContinuousDraw;
 
   public start() {
