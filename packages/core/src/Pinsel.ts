@@ -1,6 +1,5 @@
 import Logger from './helper/Logger';
-import type { Runner } from './Runner';
-import { AdaptiveRunner } from './runner/AdaptiveRunner';
+import type { Runner } from './runner';
 import { Scene } from './scene/Scene';
 import type { PinselOptions } from './types';
 import type { CoordinateSpace } from './types/CoordinateSpace';
@@ -8,28 +7,37 @@ import type { CoordinateSpace } from './types/CoordinateSpace';
 export class Pinsel {
   readonly scene: Scene;
   readonly coordinateSpace: CoordinateSpace;
-  runner?: Runner;
+  private RUNNER?: Runner;
 
-  constructor({
-    renderer,
-    coordinateSpace,
-    renderBehavior = 'ADAPTIVE',
-  }: PinselOptions) {
+  constructor({ renderer, coordinateSpace, runner }: PinselOptions) {
     this.scene = new Scene(this, {
       renderer: renderer,
       coordinateSpace: coordinateSpace ?? 'FIXED',
     });
     this.coordinateSpace = coordinateSpace ?? 'ADAPTIVE';
-    // TODO: Use correct render when renderBehavior is recurring
-    this.runner =
-      renderBehavior == 'RECURRING'
-        ? new AdaptiveRunner(this)
-        : new AdaptiveRunner(this);
+
+    this.RUNNER = runner;
+    this.RUNNER.pinsel = this;
   }
 
   commit() {
     Logger.info('CORE', 'Change commited');
     this.scene.updateAll();
-    this.runner?.render();
+    this.runner?.scheduleRender();
+  }
+
+  get runner() {
+    return this.RUNNER;
+  }
+
+  set runner(val: typeof this.RUNNER) {
+    if (this.RUNNER) {
+      this.RUNNER.pinsel = undefined;
+    }
+
+    this.RUNNER = val;
+    if (this.RUNNER) {
+      this.RUNNER.pinsel = this;
+    }
   }
 }

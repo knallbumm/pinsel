@@ -1,1 +1,1 @@
-export type RenderBehavior = 'ADAPTIVE' | 'RECURRING';
+export type RenderBehavior = 'ADAPTIVE' | 'CONTINUOUS';
