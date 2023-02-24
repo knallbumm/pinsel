@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "pnpm -C ./demo run dev ",
-    "build": "turbo build --filter=!@pinsel/demo --filter=!@pinsel/docs",
+    "docs": "turbo dev --filter=@pinsel/docs",
+    "build": "turbo build --filter=!@pinsel/docs",
     "lint": "turbo lint",
     "lint:fix": "turbo lint",
     "typecheck": "turbo typecheck",
