@@ -1,5 +1,14 @@
 # pinsel
 
+## 0.0.15
+
+### Patch Changes
+
+- 201b423: Adding first path support and improving exports
+- Updated dependencies [201b423]
+  - @pinsel/renderer@0.0.15
+  - @pinsel/core@0.0.15
+
 ## 0.0.14
 
 ### Patch Changes
