@@ -88,11 +88,7 @@ export class Path extends Shape {
     return this;
   }
 
-  bezierTo(
-    { x, y }: Point,
-    controlPoint1?: Point,
-    controlPoint2?: Point
-  ): Path {
+  bezierTo({ x, y }: Point, controlPoint1: Point, controlPoint2: Point): Path {
     if (this.path.length == 0) {
       throw Error('You need a startpoint');
     }

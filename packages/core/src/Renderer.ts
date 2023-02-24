@@ -1,6 +1,6 @@
 import type { Scene } from './scene/Scene';
+import type { Size } from './types';
 import type { RendererOptions } from './types/renderer/RendererOptions';
-import type { Size } from './types/Size';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type VariadictCallback = (...args: any[]) => void;

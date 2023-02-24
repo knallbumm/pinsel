@@ -1,4 +1,4 @@
-import type { Size } from '../Size';
+import type { Size } from '../base/Size';
 
 export interface RendererOptions {
   container?: HTMLElement | null;
