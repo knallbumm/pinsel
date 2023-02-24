@@ -1,5 +1,11 @@
 # @pinsel/core
 
+## 0.0.15
+
+### Patch Changes
+
+- 201b423: Adding first path support and improving exports
+
 ## 0.0.14
 
 ### Patch Changes
