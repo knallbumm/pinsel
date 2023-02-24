@@ -2,13 +2,15 @@ import logger from '../helper/Logger';
 import type { Pinsel } from '../Pinsel';
 import type { Renderer } from '../Renderer';
 import type { Shape } from '../shapes';
-import type { SpecificResolvedShape } from '../types';
-import type { CreationPositionConstraint } from '../types/constraints/CreationPositionConstraint';
-import type { CreationSizeConstraint } from '../types/constraints/CreationSizeConstraint';
-import type { CoordinateSpace } from '../types/CoordinateSpace';
+import type {
+  CoordinateSpace,
+  CreationPositionConstraint,
+  CreationSizeConstraint,
+  Size,
+  SpecificResolvedShape,
+} from '../types';
 import type { FrameUpdate } from '../types/FrameUpdate';
 import type { SceneOptions } from '../types/scene/SceneOptions';
-import type { Size } from '../types/Size';
 import {
   HorizontalPositionConstraint,
   HorizontalSizeConstraint,

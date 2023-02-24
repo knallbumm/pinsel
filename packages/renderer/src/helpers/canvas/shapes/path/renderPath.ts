@@ -67,6 +67,6 @@ export const renderPath = (
         break;
     }
   }
-  applyStyles({ stroke: { color: 'red', width: 10 }, fill: 'green' }, context);
+  applyStyles({ stroke: shape.stroke, fill: shape.fill }, context);
   context.closePath();
 };

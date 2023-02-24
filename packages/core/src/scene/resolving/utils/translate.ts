@@ -1,6 +1,6 @@
 import type { Anchor } from '../../../types';
-import type { Point } from '../../../types/Point';
-import type { Size } from '../../../types/Size';
+import type { Point } from '../../../types/base/Point';
+import type { Size } from '../../../types/base/Size';
 import { resolveShortAnchor } from '../general/shortAnchor/resolveShortAnchor';
 
 export const translate = (

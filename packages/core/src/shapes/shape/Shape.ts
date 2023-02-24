@@ -25,9 +25,9 @@ import type {
 } from '../../types';
 import type { CreationPositionConstraint } from '../../types/constraints/CreationPositionConstraint';
 import type { CreationSizeConstraint } from '../../types/constraints/CreationSizeConstraint';
-import type { Height } from '../../types/Height';
+import type { Height } from '../../types/base/Height';
 import type { Anchor } from '../../types/shapes/Anchor';
-import type { Width } from '../../types/Width';
+import type { Width } from '../../types/base/Width';
 
 export class Shape implements BaseShape, Commitable {
   /** Uniqe uuid which identifies the shape */

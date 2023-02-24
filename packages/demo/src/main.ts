@@ -4,7 +4,6 @@ import {
   AdaptiveRunner,
   CanvasRenderer,
   circle,
-  ContinuousRunner,
   downloadImage,
   font,
   label,
@@ -124,7 +123,9 @@ const controlPointCoordinates = { x: 0.2, y: 0.5 };
 const nowAnotherPath = path()
   .start({ x: 0, y: 1 })
   .bezierTo({ x: 1, y: 0 }, { x: 0.83, y: 1 }, { x: 0.17, y: 0 });
-
+nowAnotherPath.fill = 'pink';
+nowAnotherPath.stroke.width = 0.05;
+nowAnotherPath.stroke.color = 'blue';
 p.scene.add(nowAnotherPath);
 
 const controlPoint = circle({ ...controlPointCoordinates, radius: 0.005 });

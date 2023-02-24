@@ -1,5 +1,5 @@
+import type { Size } from '@pinsel/core';
 import { Renderer } from '@pinsel/core';
-import type { Size } from '@pinsel/core/src/types/Size';
 
 import { rotateCanvasAroundPoint } from '../helpers/canvas/rotateCanvasAroundPoint';
 import { renderCircle } from '../helpers/canvas/shapes/circle/renderCircle';
