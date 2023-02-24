@@ -2,21 +2,22 @@ import logger from '../helper/Logger';
 import type { Pinsel } from '../Pinsel';
 import type { Renderer } from '../Renderer';
 import type { Shape } from '../shapes';
-import type { SpecificResolvedShape } from '../types';
-import type { CreationPositionConstraint } from '../types/constraints/CreationPositionConstraint';
-import type { CreationSizeConstraint } from '../types/constraints/CreationSizeConstraint';
-import type { CoordinateSpace } from '../types/CoordinateSpace';
+import type {
+  CoordinateSpace,
+  CreationPositionConstraint,
+  CreationSizeConstraint,
+  Size,
+  SpecificResolvedShape,
+} from '../types';
 import type { FrameUpdate } from '../types/FrameUpdate';
 import type { SceneOptions } from '../types/scene/SceneOptions';
-import type { Size } from '../types/Size';
 import {
   HorizontalPositionConstraint,
   HorizontalSizeConstraint,
   VerticalPositionConstraint,
   VerticalSizeConstraint,
 } from './constraints';
-import { resolveShape } from './untils/resolveShape';
-import { transformToRealCoordiantes } from './untils/transformToRealCoordiantes';
+import { resolveShape } from './resolving/shapes/resolveShape';
 
 export class Scene {
   pinsel: Pinsel;
@@ -46,7 +47,14 @@ export class Scene {
 
       shape.scene = this;
       this.shapes.push(shape);
-      this.resolvedShapes.push(resolveShape(shape));
+      const size = this.renderer.calculatedSize;
+      const relativeLength =
+        this.coordinateSpace == 'ADAPTIVE'
+          ? this.relativeTo == 'HEIGHT'
+            ? size.height
+            : size.width
+          : 1;
+      this.resolvedShapes.push(resolveShape(shape, relativeLength));
     }
   }
 
@@ -61,11 +69,7 @@ export class Scene {
     logger.info('CORE', 'Requested FrameUpdate for size', size);
 
     return {
-      objects: transformToRealCoordiantes(
-        this.resolvedShapes,
-        this.relativeTo == 'HEIGHT' ? size.height : size.width,
-        this.coordinateSpace
-      ),
+      objects: this.resolvedShapes,
       scene: {
         fill: this.fill,
       },
@@ -79,7 +83,16 @@ export class Scene {
   }
 
   updateAll() {
-    this.resolvedShapes = this.shapes.map((s) => resolveShape(s));
+    const size = this.renderer.calculatedSize;
+    const relativeLength =
+      this.coordinateSpace == 'ADAPTIVE'
+        ? this.relativeTo == 'HEIGHT'
+          ? size.height
+          : size.width
+        : 1;
+    this.resolvedShapes = this.shapes.map((s) =>
+      resolveShape(s, relativeLength)
+    );
   }
 
   updateBatch(fn: () => void) {

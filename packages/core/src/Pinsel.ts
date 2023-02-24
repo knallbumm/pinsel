@@ -2,7 +2,7 @@ import Logger from './helper/Logger';
 import type { Runner } from './runner';
 import { Scene } from './scene/Scene';
 import type { PinselOptions } from './types';
-import type { CoordinateSpace } from './types/CoordinateSpace';
+import type { CoordinateSpace } from './types/base/CoordinateSpace';
 
 export class Pinsel {
   readonly scene: Scene;

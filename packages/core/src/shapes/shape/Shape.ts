@@ -15,19 +15,19 @@ import {
   VerticalPositionConstraint,
   VerticalSizeConstraint,
 } from '../../scene/constraints';
+import { resolveShortAnchor } from '../../scene/resolving/general/shortAnchor/resolveShortAnchor';
 import type { Scene } from '../../scene/Scene';
-import { resolveShortAnchor } from '../../scene/untils/resolveShortAnchor';
 import type {
+  Anchor,
   BaseShape,
+  CreationPositionConstraint,
   CreationShape,
+  CreationSizeConstraint,
+  Height,
   ShapeAttributes,
   ShapeType,
+  Width,
 } from '../../types';
-import type { CreationPositionConstraint } from '../../types/constraints/CreationPositionConstraint';
-import type { CreationSizeConstraint } from '../../types/constraints/CreationSizeConstraint';
-import type { Height } from '../../types/Height';
-import type { Anchor } from '../../types/shapes/Anchor';
-import type { Width } from '../../types/Width';
 
 export class Shape implements BaseShape, Commitable {
   /** Uniqe uuid which identifies the shape */
@@ -39,10 +39,10 @@ export class Shape implements BaseShape, Commitable {
   protected SCENE?: Scene = undefined;
 
   /** X-Position of the shape */
-  protected X: number | HorizontalPositionConstraint;
+  protected X?: number | HorizontalPositionConstraint;
 
   /** Y-Position of the shape */
-  protected Y: number | VerticalPositionConstraint;
+  protected Y?: number | VerticalPositionConstraint;
 
   /** Fill of the shape */
   protected FILL = 'white';
@@ -55,7 +55,7 @@ export class Shape implements BaseShape, Commitable {
 
   protected ROTATION: Rotation;
 
-  constructor({ x = 0, y = 0, type, fill }: CreationShape & ShapeAttributes) {
+  constructor({ x, y, type, fill }: CreationShape & ShapeAttributes) {
     this.X = x;
     this.Y = y;
 
@@ -63,7 +63,10 @@ export class Shape implements BaseShape, Commitable {
     this.FILL = fill ?? 'white';
 
     this.ROTATION = rotation({ deg: 0, point: 'ANCHOR' });
+    this.ROTATION.association = this;
+
     this.STROKE = stroke({});
+    this.STROKE.association = this;
   }
 
   commit(attributes: GroupedAttributes): void {
@@ -185,11 +188,17 @@ export class Shape implements BaseShape, Commitable {
   }
 
   get actualX(): number {
-    return resolveHorizontalPositionConstraint(this.X);
+    if (this.x == undefined) {
+      throw Error('Could not find defined X');
+    }
+    return resolveHorizontalPositionConstraint(this.x);
   }
 
   get actualY(): number {
-    return resolveVerticalPositionConstraint(this.Y);
+    if (this.y == undefined) {
+      throw Error('Could not find defined Y');
+    }
+    return resolveVerticalPositionConstraint(this.y);
   }
 
   get anchor() {

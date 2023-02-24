@@ -1,9 +1,10 @@
+import type { Size } from '@pinsel/core';
 import { Renderer } from '@pinsel/core';
-import type { Size } from '@pinsel/core/src/types/Size';
 
 import { rotateCanvasAroundPoint } from '../helpers/canvas/rotateCanvasAroundPoint';
 import { renderCircle } from '../helpers/canvas/shapes/circle/renderCircle';
 import { renderLabel } from '../helpers/canvas/shapes/label/renderLabel';
+import { renderPath } from '../helpers/canvas/shapes/path/renderPath';
 import { renderRectangle } from '../helpers/canvas/shapes/rectangle/renderRectangle';
 import type { CanvasRendererOptions } from './types/CanvasRendererOptions';
 
@@ -48,6 +49,9 @@ export class CanvasRenderer extends Renderer {
           break;
         case 'LABEL':
           renderLabel(context, shape);
+          break;
+        case 'PATH':
+          renderPath(context, shape);
       }
       context.restore();
     }

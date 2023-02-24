@@ -1,4 +1,4 @@
-import type { Point } from './Point';
+import type { Point } from './base';
 
 export interface ResolvedRotation {
   angle: number;
