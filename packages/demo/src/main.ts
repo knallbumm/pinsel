@@ -1,12 +1,14 @@
 import './style.css';
 
 import {
+  AdaptiveRunner,
   CanvasRenderer,
   circle,
   ContinuousRunner,
   downloadImage,
   font,
   label,
+  path,
   Pinsel,
   rectangle,
   rotation,
@@ -15,7 +17,7 @@ import {
 const container = document.getElementById('app');
 const renderer = new CanvasRenderer({ container, size: 'MAX' });
 
-const runner = new ContinuousRunner();
+const runner = new AdaptiveRunner();
 
 const p = new Pinsel({
   coordinateSpace: 'ADAPTIVE',
@@ -26,7 +28,7 @@ const p = new Pinsel({
 
 const rect = rectangle({ width: 0.5, height: 0.3, x: 0.1, y: 0 });
 rect.stroke.color = '#FB39FF';
-rect.stroke.width = 15;
+rect.stroke.width = 0.005;
 p.scene.add(rect);
 
 p.scene.fill = 'white';
@@ -47,7 +49,7 @@ const circ = circle({
   y: 0.2,
 });
 circ.stroke.color = 'black';
-circ.stroke.width = 30;
+circ.stroke.width = 0.01;
 circ.fill = '#FFC02D';
 circ.anchor = 'CENTER';
 p.scene.add(circ);
@@ -100,6 +102,36 @@ p.scene.add(
   })
 );
 
+// const pa = path()
+//   .fromPoints([
+//     { x: 0.1, y: 0.8 },
+//     { x: 0, y: 0.2 },
+//     { x: 0.3, y: 0.3 },
+//   ])
+//   .close();
+
+const controlPointCoordinates = { x: 0.2, y: 0.5 };
+
+// const anotherPath = path()
+//   .start({ x: 0, y: 0.8 })
+//   .linearTo({ x: 0, y: 0.2 })
+//   .linearTo({ x: 0.3, y: 0.3 })
+//   .arcTo({ x: 0.5, y: 0.5 }, controlPointCoordinates)
+//   .close();
+
+// p.scene.add(anotherPath);
+
+const nowAnotherPath = path()
+  .start({ x: 0, y: 1 })
+  .bezierTo({ x: 1, y: 0 }, { x: 0.83, y: 1 }, { x: 0.17, y: 0 });
+
+p.scene.add(nowAnotherPath);
+
+const controlPoint = circle({ ...controlPointCoordinates, radius: 0.005 });
+controlPoint.anchor = 'CENTER';
+controlPoint.fill = 'blue';
+p.scene.add(controlPoint);
+
 p.commit();
 
 document.addEventListener('click', (event) => {
@@ -122,7 +154,9 @@ const renderCanvas = async () => {
 
 // void renderCanvas();
 
-runner.draw = ({ frameCount }) => {
-  console.log('Something to draw', frameCount);
-};
-runner.start();
+// runner.draw = ({ frameCount }) => {
+//   console.log('Something to draw', frameCount);
+// };
+// runner.start();
+
+// console.log(anotherPath);

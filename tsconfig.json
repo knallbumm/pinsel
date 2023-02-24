@@ -19,6 +19,7 @@
       // typescript will try to follow the package.json types field, making it necessary to run build, to update the types.
       // This will make typescript use the actual source code instead
       "@pinsel/core": ["./packages/core/index.ts"],
+      "@pinsel/path": ["./packages/path/index.ts"],
       "@pinsel/renderer": ["./packages/renderer/index.ts"],
       "pinsel": ["./packages/pinsel/index.ts"]
     }

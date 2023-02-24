@@ -1,4 +1,4 @@
-import type { Anchor } from '../../types';
+import type { Anchor } from '../../../../types';
 
 export const resolveShortAnchor = (anchor: Anchor) => {
   if (typeof anchor == 'string') {

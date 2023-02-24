@@ -1,10 +1,14 @@
-import { resolveHorizontalPositionConstraint } from '../../helper/resolveHorizontalPositionConstraint';
-import { resolveVerticalPositionConstraint } from '../../helper/resolveVerticalPositionConstraint';
-import type { Shape } from '../../shapes';
-import type { ResolvedRotation } from '../../types/ResolvedRotation';
-import { resolveShortAnchor } from './resolveShortAnchor';
+import { resolveHorizontalPositionConstraint } from '../../../../helper/resolveHorizontalPositionConstraint';
+import { resolveVerticalPositionConstraint } from '../../../../helper/resolveVerticalPositionConstraint';
+import type { Shape } from '../../../../shapes';
+import type { ResolvedRotation } from '../../../../types/ResolvedRotation';
+import { resolvePoint } from '../point/point';
+import { resolveShortAnchor } from '../shortAnchor/resolveShortAnchor';
 
-export const resolveRotation = (shape: Shape): ResolvedRotation => {
+export const resolveRotation = (
+  shape: Shape,
+  relativeLength: number
+): ResolvedRotation => {
   const bounds = shape.actualBounds;
 
   let x = 0;
@@ -30,7 +34,7 @@ export const resolveRotation = (shape: Shape): ResolvedRotation => {
       shape.rotation.unit == 'RAD'
         ? shape.rotation.angle
         : (shape.rotation.angle * Math.PI) / 180,
-    point: { x, y },
+    point: resolvePoint({ x, y }, relativeLength),
   };
 
   return resolved;
