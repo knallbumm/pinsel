@@ -32,8 +32,7 @@
     "coverage": "vitest run --coverage"
   },
   "dependencies": {
-    "uuid": "^9.0.0",
-    "@pinsel/path": "workspace:*"
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@types/uuid": "^9.0.0"
