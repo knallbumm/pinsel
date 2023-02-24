@@ -18,16 +18,16 @@ import {
 import { resolveShortAnchor } from '../../scene/resolving/general/shortAnchor/resolveShortAnchor';
 import type { Scene } from '../../scene/Scene';
 import type {
+  Anchor,
   BaseShape,
+  CreationPositionConstraint,
   CreationShape,
+  CreationSizeConstraint,
+  Height,
   ShapeAttributes,
   ShapeType,
+  Width,
 } from '../../types';
-import type { CreationPositionConstraint } from '../../types/constraints/CreationPositionConstraint';
-import type { CreationSizeConstraint } from '../../types/constraints/CreationSizeConstraint';
-import type { Height } from '../../types/base/Height';
-import type { Anchor } from '../../types/shapes/Anchor';
-import type { Width } from '../../types/base/Width';
 
 export class Shape implements BaseShape, Commitable {
   /** Uniqe uuid which identifies the shape */

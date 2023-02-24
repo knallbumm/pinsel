@@ -1,13 +1,13 @@
 import type { Anchor } from '../../types';
 import type { Height } from '../../types/base/Height';
 import type { Point } from '../../types/base/Point';
+import type { Width } from '../../types/base/Width';
 import type {
   CloseElement,
   CreationPath,
   PathPointElement,
   SpecificLineElement,
 } from '../../types/shapes/path';
-import type { Width } from '../../types/base/Width';
 import { Shape } from '../shape/Shape';
 
 export class Path extends Shape {
